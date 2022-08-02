@@ -19,7 +19,8 @@
         ShowGameTable(4, 4)
         Console.SetCursorPosition(4, 4)
         Dim isGameClear As Boolean = False
-        While Not isGameClear
+        Dim numberOfAttacks As Integer = 0
+        While Not isGameClear AndAlso numberOfAttacks < 24
             Dim c As ConsoleKeyInfo = Console.ReadKey(True)
             Select Case c.Key
 
@@ -36,16 +37,18 @@
                     MoveCursor(0, 1)
 
                 Case ConsoleKey.Enter
-                    AttackEnemyship()
+                    numberOfAttacks = AttackEnemyship(numberOfAttacks)
 
                 Case ConsoleKey.Spacebar
-                    AttackEnemyship()
+                    numberOfAttacks = AttackEnemyship(numberOfAttacks)
 
             End Select
             isGameClear = IsDefeatedAllTheEnemyShips()
         End While
         Console.SetCursorPosition(0, 13)
-        If isGameClear Then
+        If Not isGameClear Then
+            Console.Write("ゲームオーバーです")
+        Else
             Console.Write("ゲームクリアです")
         End If
 
@@ -171,22 +174,28 @@
     ''' <summary>
     ''' 指定のマスに攻撃する
     ''' </summary>
-    Private Sub AttackEnemyship()
+    ''' <param name="numberOfAttacks"></param>
+    ''' <returns></returns>
+    Private Function AttackEnemyship(numberOfAttacks As Integer) As Integer
         Dim cursorLeft As Integer = Console.CursorLeft
         Dim cursorTop As Integer = Console.CursorTop
         Dim lineNumber As Integer = cursorTop - 4
         Dim columnNumber As Integer = CInt((cursorLeft / 2) - 2)
+        Dim returnNumberOfAttacks As Integer = numberOfAttacks
         Console.Clear()
-        If table(lineNumber)(columnNumber) = 1 Then
-            table(lineNumber)(columnNumber) = 2
-        ElseIf table(lineNumber)(columnNumber) = 0 Then
-            table(lineNumber)(columnNumber) = 3
+        If table(lineNumber)(columnNumber) = 1 OrElse table(lineNumber)(columnNumber) = 0 Then
+            returnNumberOfAttacks += 1
+            If table(lineNumber)(columnNumber) = 1 Then
+                table(lineNumber)(columnNumber) = 2
+            ElseIf table(lineNumber)(columnNumber) = 0 Then
+                table(lineNumber)(columnNumber) = 3
+            End If
         End If
 
         ShowGameTable(cursorLeft, cursorTop)
         Console.SetCursorPosition(cursorLeft, cursorTop)
-
-    End Sub
+        Return returnNumberOfAttacks
+    End Function
 
 
     ''' <summary>
