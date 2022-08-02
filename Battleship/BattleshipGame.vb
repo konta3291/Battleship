@@ -18,8 +18,8 @@
         CreateEnemyship(enemyshipSize)
         ShowGameTable(4, 4)
         Console.SetCursorPosition(4, 4)
-        Dim isFinish As Boolean = False
-        While Not isFinish
+        Dim isGameClear As Boolean = False
+        While Not isGameClear
             Dim c As ConsoleKeyInfo = Console.ReadKey(True)
             Select Case c.Key
 
@@ -39,13 +39,35 @@
                     AttackEnemyship()
 
                 Case ConsoleKey.Spacebar
-                    isFinish = True
+                    AttackEnemyship()
 
             End Select
-
+            isGameClear = IsDefeatedAllTheEnemyShips()
         End While
+        Console.SetCursorPosition(0, 13)
+        If isGameClear Then
+            Console.Write("ゲームクリアです")
+        End If
 
     End Sub
+
+    ''' <summary>
+    ''' 敵船をすべて倒したか確認する
+    ''' </summary>
+    ''' <returns></returns>
+    Private Function IsDefeatedAllTheEnemyShips() As Boolean
+
+        For i As Integer = 0 To 7
+            For j As Integer = 0 To 7
+                If table(i)(j) = 1 Then
+                    Return False
+                End If
+            Next
+        Next
+
+        Return True
+
+    End Function
 
     ''' <summary>
     ''' テーブルに敵船を作る
