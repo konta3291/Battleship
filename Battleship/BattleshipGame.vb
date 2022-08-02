@@ -14,6 +14,8 @@
     ''' 戦艦ゲームの処理を行う
     ''' </summary>
     Public Sub BattleshipGame()
+        Dim enemyshipSize As Integer() = {3, 4, 5}
+        CreateEnemyship(enemyshipSize)
         ShowGameTable(4, 4)
         Console.SetCursorPosition(4, 4)
         Dim isFinish As Boolean = False
@@ -44,6 +46,105 @@
         End While
 
     End Sub
+
+    ''' <summary>
+    ''' テーブルに敵船を作る
+    ''' </summary>
+    ''' <param name="enemyshipSize"></param>
+    Private Sub CreateEnemyship(enemyshipSize As Integer())
+        Dim random As New Random
+        Dim i As Integer = 0
+        While i < enemyshipSize.Length
+            Dim verticallyOrHorizontally As Integer = random.Next(2)
+            Dim lineBiginPosition As Integer = random.Next(8)
+            Dim columnBiginPosition As Integer = random.Next(8)
+            If verticallyOrHorizontally = 0 Then
+                If lineBiginPosition < 4 Then
+                    If CanCreateEnemyship(lineBiginPosition, columnBiginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "+"c) Then
+                        For j As Integer = 0 To enemyshipSize(i) - 1
+                            table(lineBiginPosition + j)(columnBiginPosition) = 1
+                        Next
+                    Else
+                        Continue While
+                    End If
+                Else
+                    If CanCreateEnemyship(lineBiginPosition, columnBiginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "-"c) Then
+                        For j As Integer = 0 To enemyshipSize(i) - 1
+                            table(lineBiginPosition - j)(columnBiginPosition) = 1
+                        Next
+                    Else
+                        Continue While
+                    End If
+                End If
+            ElseIf verticallyOrHorizontally = 1 Then
+                If columnBiginPosition < 4 Then
+                    If CanCreateEnemyship(lineBiginPosition, columnBiginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "+"c) Then
+                        For j As Integer = 0 To enemyshipSize(i) - 1
+                            table(lineBiginPosition)(columnBiginPosition + j) = 1
+                        Next
+                    Else
+                        Continue While
+                    End If
+                Else
+                    If CanCreateEnemyship(lineBiginPosition, columnBiginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "-"c) Then
+                        For j As Integer = 0 To enemyshipSize(i) - 1
+                            table(lineBiginPosition)(columnBiginPosition - j) = 1
+                        Next
+                    Else
+                        Continue While
+                    End If
+                End If
+            End If
+            i += 1
+        End While
+    End Sub
+
+    ''' <summary>
+    ''' 敵船を配置できるか判断する
+    ''' </summary>
+    ''' <param name="lineBiginPosition"></param>
+    ''' <param name="columnBiginPosition"></param>
+    ''' <param name="enemyshipSize"></param>
+    ''' <param name="verticallyOrHorizontally"></param>
+    ''' <param name="plusMinus"></param>
+    ''' <returns></returns>
+    Private Function CanCreateEnemyship(lineBiginPosition As Integer, columnBiginPosition As Integer,
+                                          enemyshipSize As Integer, verticallyOrHorizontally As Integer, plusMinus As Char) As Boolean
+        If verticallyOrHorizontally = 0 Then
+            If plusMinus = "+"c Then
+                For i As Integer = 0 To enemyshipSize
+                    If Not table(lineBiginPosition + i)(columnBiginPosition) = 0 Then
+                        Return False
+                    End If
+                Next
+            Else
+                For i As Integer = 0 To enemyshipSize
+                    If Not table(lineBiginPosition - i)(columnBiginPosition) = 0 Then
+                        Return False
+                    End If
+                Next
+            End If
+
+        Else
+            If plusMinus = "+"c Then
+                For i As Integer = 0 To enemyshipSize
+                    If Not table(lineBiginPosition)(columnBiginPosition + i) = 0 Then
+                        Return False
+                    End If
+                Next
+            Else
+                For i As Integer = 0 To enemyshipSize
+                    If Not table(lineBiginPosition)(columnBiginPosition - i) = 0 Then
+                        Return False
+                    End If
+                Next
+            End If
+
+        End If
+
+        Return True
+
+    End Function
 
     ''' <summary>
     ''' 指定のマスに攻撃する
