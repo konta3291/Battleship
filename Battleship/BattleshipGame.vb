@@ -155,7 +155,9 @@
         Dim lineNumber As Integer = cursorTop - 4
         Dim columnNumber As Integer = CInt((cursorLeft / 2) - 2)
         Console.Clear()
-        If table(lineNumber)(columnNumber) = 0 Then
+        If table(lineNumber)(columnNumber) = 1 Then
+            table(lineNumber)(columnNumber) = 2
+        ElseIf table(lineNumber)(columnNumber) = 0 Then
             table(lineNumber)(columnNumber) = 3
         End If
 
@@ -185,7 +187,9 @@
             End If
             Console.Write(i + 1 & "|")
             For j As Integer = 0 To 7
-                If table(i)(j) = 3 Then
+                If table(i)(j) = 2 Then
+                    Console.Write("〇")
+                ElseIf table(i)(j) = 3 Then
                     Console.Write("×")
                 Else
                     Console.Write("  ")
