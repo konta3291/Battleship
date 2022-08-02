@@ -1,4 +1,14 @@
 ﻿Public Class BattleshipGame
+    Private table()() As Integer = {
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0}
+        }
 
     ''' <summary>
     ''' 戦艦ゲームの処理を行う
@@ -24,7 +34,7 @@
                     MoveCursor(0, 1)
 
                 Case ConsoleKey.Enter
-                    isFinish = True
+                    AttackEnemyship()
 
                 Case ConsoleKey.Spacebar
                     isFinish = True
@@ -34,6 +44,25 @@
         End While
 
     End Sub
+
+    ''' <summary>
+    ''' 指定のマスに攻撃する
+    ''' </summary>
+    Private Sub AttackEnemyship()
+        Dim cursorLeft As Integer = Console.CursorLeft
+        Dim cursorTop As Integer = Console.CursorTop
+        Dim lineNumber As Integer = cursorTop - 4
+        Dim columnNumber As Integer = CInt((cursorLeft / 2) - 2)
+        Console.Clear()
+        If table(lineNumber)(columnNumber) = 0 Then
+            table(lineNumber)(columnNumber) = 3
+        End If
+
+        ShowGameTable(cursorLeft, cursorTop)
+        Console.SetCursorPosition(cursorLeft, cursorTop)
+
+    End Sub
+
 
     ''' <summary>
     ''' ゲームテーブルを表示する
@@ -55,7 +84,11 @@
             End If
             Console.Write(i + 1 & "|")
             For j As Integer = 0 To 7
-                Console.Write("  ")
+                If table(i)(j) = 3 Then
+                    Console.Write("×")
+                Else
+                    Console.Write("  ")
+                End If
             Next
             Console.WriteLine("|")
         Next
