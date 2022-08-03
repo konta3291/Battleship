@@ -236,18 +236,11 @@
     ''' <summary>
     ''' 今いる列を指す矢印を作る
     ''' </summary>
-    ''' <param name="currentCursorLeft"></param>
+    ''' <param name="cursorLeft"></param>
     ''' <returns></returns>
-    Public Function MakeColumnArrow(currentCursorLeft As Integer) As String
-        Dim columnArrow As String = Nothing
-        Dim cursorLeft As Integer = currentCursorLeft
+    Public Function MakeColumnArrow(cursorLeft As Integer) As String
 
-        For i As Integer = 0 To cursorLeft - 1
-            columnArrow &= " "
-        Next
-
-        columnArrow &= "↓"
-        Return columnArrow
+        Return "↓".PadLeft(cursorLeft + 1, " "c)
 
     End Function
 
