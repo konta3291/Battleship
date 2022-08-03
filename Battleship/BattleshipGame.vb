@@ -81,39 +81,39 @@
         Dim i As Integer = 0
         While i < enemyshipSize.Length
             Dim verticallyOrHorizontally As Integer = random.Next(2)
-            Dim lineBiginPosition As Integer = random.Next(8)
-            Dim columnBiginPosition As Integer = random.Next(8)
+            Dim lineBeginPosition As Integer = random.Next(8)
+            Dim columnBeginPosition As Integer = random.Next(8)
             If verticallyOrHorizontally = 0 Then
-                If lineBiginPosition < 4 Then
-                    If CanCreateEnemyship(lineBiginPosition, columnBiginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "+"c) Then
+                If lineBeginPosition < 4 Then
+                    If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "+"c) Then
                         For j As Integer = 0 To enemyshipSize(i) - 1
-                            table(lineBiginPosition + j)(columnBiginPosition) = 1
+                            table(lineBeginPosition + j)(columnBeginPosition) = 1
                         Next
                     Else
                         Continue While
                     End If
                 Else
-                    If CanCreateEnemyship(lineBiginPosition, columnBiginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "-"c) Then
+                    If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "-"c) Then
                         For j As Integer = 0 To enemyshipSize(i) - 1
-                            table(lineBiginPosition - j)(columnBiginPosition) = 1
+                            table(lineBeginPosition - j)(columnBeginPosition) = 1
                         Next
                     Else
                         Continue While
                     End If
                 End If
             ElseIf verticallyOrHorizontally = 1 Then
-                If columnBiginPosition < 4 Then
-                    If CanCreateEnemyship(lineBiginPosition, columnBiginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "+"c) Then
+                If columnBeginPosition < 4 Then
+                    If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "+"c) Then
                         For j As Integer = 0 To enemyshipSize(i) - 1
-                            table(lineBiginPosition)(columnBiginPosition + j) = 1
+                            table(lineBeginPosition)(columnBeginPosition + j) = 1
                         Next
                     Else
                         Continue While
                     End If
                 Else
-                    If CanCreateEnemyship(lineBiginPosition, columnBiginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "-"c) Then
+                    If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "-"c) Then
                         For j As Integer = 0 To enemyshipSize(i) - 1
-                            table(lineBiginPosition)(columnBiginPosition - j) = 1
+                            table(lineBeginPosition)(columnBeginPosition - j) = 1
                         Next
                     Else
                         Continue While
@@ -127,24 +127,24 @@
     ''' <summary>
     ''' 敵船を配置できるか判断する
     ''' </summary>
-    ''' <param name="lineBiginPosition"></param>
-    ''' <param name="columnBiginPosition"></param>
+    ''' <param name="lineBeginPosition"></param>
+    ''' <param name="columnBeginPosition"></param>
     ''' <param name="enemyshipSize"></param>
     ''' <param name="verticallyOrHorizontally"></param>
     ''' <param name="plusMinus"></param>
     ''' <returns></returns>
-    Private Function CanCreateEnemyship(lineBiginPosition As Integer, columnBiginPosition As Integer,
+    Private Function CanCreateEnemyship(lineBeginPosition As Integer, columnBeginPosition As Integer,
                                           enemyshipSize As Integer, verticallyOrHorizontally As Integer, plusMinus As Char) As Boolean
         If verticallyOrHorizontally = 0 Then
             If plusMinus = "+"c Then
                 For i As Integer = 0 To enemyshipSize
-                    If Not table(lineBiginPosition + i)(columnBiginPosition) = 0 Then
+                    If Not table(lineBeginPosition + i)(columnBeginPosition) = 0 Then
                         Return False
                     End If
                 Next
             Else
                 For i As Integer = 0 To enemyshipSize
-                    If Not table(lineBiginPosition - i)(columnBiginPosition) = 0 Then
+                    If Not table(lineBeginPosition - i)(columnBeginPosition) = 0 Then
                         Return False
                     End If
                 Next
@@ -153,13 +153,13 @@
         Else
             If plusMinus = "+"c Then
                 For i As Integer = 0 To enemyshipSize
-                    If Not table(lineBiginPosition)(columnBiginPosition + i) = 0 Then
+                    If Not table(lineBeginPosition)(columnBeginPosition + i) = 0 Then
                         Return False
                     End If
                 Next
             Else
                 For i As Integer = 0 To enemyshipSize
-                    If Not table(lineBiginPosition)(columnBiginPosition - i) = 0 Then
+                    If Not table(lineBeginPosition)(columnBeginPosition - i) = 0 Then
                         Return False
                     End If
                 Next
