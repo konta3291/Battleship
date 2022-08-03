@@ -9,15 +9,16 @@
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0}
         }
-
+    Private ReadOnly LEFT_EDGE As Integer = 4
+    Private ReadOnly TOP_EDGE As Integer = 4
     ''' <summary>
     ''' 戦艦ゲームの処理を行う
     ''' </summary>
     Public Sub BattleshipGame()
         Dim enemyshipSize As Integer() = {3, 4, 5}
         CreateEnemyship(enemyshipSize)
-        ShowGameTable(4, 4)
-        Console.SetCursorPosition(4, 4)
+        ShowGameTable(LEFT_EDGE, TOP_EDGE)
+        Console.SetCursorPosition(LEFT_EDGE, TOP_EDGE)
         Dim isGameClear As Boolean = False
         Dim numberOfAttacks As Integer = 0
         While Not isGameClear AndAlso numberOfAttacks < 24
@@ -252,19 +253,20 @@
     Private Sub MoveCursor(x As Integer, y As Integer)
         Dim afterCursorLeft As Integer = Console.CursorLeft + x
         Dim afterCursorTop As Integer = Console.CursorTop + y
-
+        Const RIGHT_EDGE As Integer = 18
+        Const LOWER_EDGE As Integer = 11
         'テーブルからはみ出そうになったら修正
-        If afterCursorLeft < 4 Then
-            afterCursorLeft = 4
-        ElseIf 18 < afterCursorLeft Then
-            afterCursorLeft = 18
+        If afterCursorLeft < LEFT_EDGE Then
+            afterCursorLeft = LEFT_EDGE
+        ElseIf RIGHT_EDGE < afterCursorLeft Then
+            afterCursorLeft = RIGHT_EDGE
         End If
 
         'テーブルからはみ出そうになったら修正
-        If afterCursorTop < 4 Then
-            afterCursorTop = 4
-        ElseIf 11 < afterCursorTop Then
-            afterCursorTop = 11
+        If afterCursorTop < TOP_EDGE Then
+            afterCursorTop = TOP_EDGE
+        ElseIf LOWER_EDGE < afterCursorTop Then
+            afterCursorTop = LOWER_EDGE
         End If
 
         Console.Clear()
