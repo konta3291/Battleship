@@ -57,7 +57,8 @@
     ''' <summary>
     ''' 敵船をすべて倒したか確認する
     ''' </summary>
-    ''' <returns></returns>
+    ''' <returns>すべて倒した場合はTrue
+    ''' そうでない場合はFalse</returns>
     Private Function IsDefeatedAllTheEnemyShips() As Boolean
 
         For i As Integer = 0 To 7
