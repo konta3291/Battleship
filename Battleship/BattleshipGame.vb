@@ -11,6 +11,15 @@
         }
     Private ReadOnly LEFT_EDGE As Integer = 4
     Private ReadOnly TOP_EDGE As Integer = 4
+
+    Private Enum TypeOfSquare
+        Naught = 0
+        Enemy
+        Attacked
+        Miss
+    End Enum
+
+
     ''' <summary>
     ''' 戦艦ゲームの処理を行う
     ''' </summary>
@@ -65,7 +74,7 @@
 
         For i As Integer = 0 To 7
             For j As Integer = 0 To 7
-                If table(i)(j) = 1 Then
+                If table(i)(j) = TypeOfSquare.Enemy Then
                     Return False
                 End If
             Next
@@ -87,12 +96,12 @@
         Dim columnNumber As Integer = CInt((cursorLeft / 2) - 2)
         Dim returnNumberOfAttacks As Integer = numberOfAttacks
         Console.Clear()
-        If table(lineNumber)(columnNumber) = 1 OrElse table(lineNumber)(columnNumber) = 0 Then
+        If table(lineNumber)(columnNumber) = TypeOfSquare.Enemy OrElse table(lineNumber)(columnNumber) = TypeOfSquare.Naught Then
             returnNumberOfAttacks += 1
-            If table(lineNumber)(columnNumber) = 1 Then
-                table(lineNumber)(columnNumber) = 2
-            ElseIf table(lineNumber)(columnNumber) = 0 Then
-                table(lineNumber)(columnNumber) = 3
+            If table(lineNumber)(columnNumber) = TypeOfSquare.Enemy Then
+                table(lineNumber)(columnNumber) = TypeOfSquare.Attacked
+            ElseIf table(lineNumber)(columnNumber) = TypeOfSquare.Naught Then
+                table(lineNumber)(columnNumber) = TypeOfSquare.Miss
             End If
         End If
 
@@ -121,9 +130,9 @@
             End If
             Console.Write(i + 1 & "|")
             For j As Integer = 0 To 7
-                If table(i)(j) = 2 Then
+                If table(i)(j) = TypeOfSquare.Attacked Then
                     Console.Write("〇")
-                ElseIf table(i)(j) = 3 Then
+                ElseIf table(i)(j) = TypeOfSquare.Miss Then
                     Console.Write("×")
                 Else
                     Console.Write("  ")

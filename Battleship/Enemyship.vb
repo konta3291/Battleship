@@ -1,4 +1,8 @@
 ﻿Public Class Enemyship
+    Private Enum TypeOfSquare
+        Naught = 0
+        Enemy
+    End Enum
 
     ''' <summary>
     ''' テーブルに敵船を作る
@@ -18,7 +22,7 @@
                 If lineBeginPosition < 4 Then
                     If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSizes(i) - 1, verticallyOrHorizontally, "+"c, returnTable) Then
                         For j As Integer = 0 To enemyshipSizes(i) - 1
-                            returnTable(lineBeginPosition + j)(columnBeginPosition) = 1
+                            returnTable(lineBeginPosition + j)(columnBeginPosition) = TypeOfSquare.Enemy
                         Next
                     Else
                         Continue While
@@ -26,7 +30,8 @@
                 Else
                     If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSizes(i) - 1, verticallyOrHorizontally, "-"c, returnTable) Then
                         For j As Integer = 0 To enemyshipSizes(i) - 1
-                            returnTable(lineBeginPosition - j)(columnBeginPosition) = 1
+
+                            returnTable(lineBeginPosition - j)(columnBeginPosition) = TypeOfSquare.Enemy
                         Next
                     Else
                         Continue While
@@ -36,7 +41,7 @@
                 If columnBeginPosition < 4 Then
                     If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSizes(i) - 1, verticallyOrHorizontally, "+"c, returnTable) Then
                         For j As Integer = 0 To enemyshipSizes(i) - 1
-                            returnTable(lineBeginPosition)(columnBeginPosition + j) = 1
+                            returnTable(lineBeginPosition)(columnBeginPosition + j) = TypeOfSquare.Enemy
                         Next
                     Else
                         Continue While
@@ -44,7 +49,7 @@
                 Else
                     If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSizes(i) - 1, verticallyOrHorizontally, "-"c, returnTable) Then
                         For j As Integer = 0 To enemyshipSizes(i) - 1
-                            returnTable(lineBeginPosition)(columnBeginPosition - j) = 1
+                            returnTable(lineBeginPosition)(columnBeginPosition - j) = TypeOfSquare.Enemy
                         Next
                     Else
                         Continue While
@@ -71,13 +76,13 @@
         If verticallyOrHorizontally = 0 Then
             If plusMinus = "+"c Then
                 For i As Integer = 0 To enemyshipSize
-                    If Not table(lineBeginPosition + i)(columnBeginPosition) = 0 Then
+                    If Not table(lineBeginPosition + i)(columnBeginPosition) = TypeOfSquare.Naught Then
                         Return False
                     End If
                 Next
             Else
                 For i As Integer = 0 To enemyshipSize
-                    If Not table(lineBeginPosition - i)(columnBeginPosition) = 0 Then
+                    If Not table(lineBeginPosition - i)(columnBeginPosition) = TypeOfSquare.Naught Then
                         Return False
                     End If
                 Next
@@ -86,13 +91,13 @@
         Else
             If plusMinus = "+"c Then
                 For i As Integer = 0 To enemyshipSize
-                    If Not table(lineBeginPosition)(columnBeginPosition + i) = 0 Then
+                    If Not table(lineBeginPosition)(columnBeginPosition + i) = TypeOfSquare.Naught Then
                         Return False
                     End If
                 Next
             Else
                 For i As Integer = 0 To enemyshipSize
-                    If Not table(lineBeginPosition)(columnBeginPosition - i) = 0 Then
+                    If Not table(lineBeginPosition)(columnBeginPosition - i) = TypeOfSquare.Naught Then
                         Return False
                     End If
                 Next
