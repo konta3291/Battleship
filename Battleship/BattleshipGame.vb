@@ -1,5 +1,5 @@
 ﻿Public Class BattleshipGame
-    Private table()() As Integer = {
+    Private table As Integer()() = {
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
