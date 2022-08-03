@@ -240,9 +240,6 @@
     Public Function MakeColumnArrow(currentCursorLeft As Integer) As String
         Dim columnArrow As String = Nothing
         Dim cursorLeft As Integer = currentCursorLeft
-        If Not currentCursorLeft Mod 2 = 0 Then
-            cursorLeft -= 1
-        End If
 
         For i As Integer = 0 To cursorLeft - 1
             columnArrow &= " "
