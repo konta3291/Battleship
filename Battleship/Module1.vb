@@ -12,15 +12,25 @@
     ''' もう一度遊ぶか聞きます
     ''' </summary>
     Private Function AskPlayerWantToPlayAgain() As Boolean
-        Dim playerAnswer As String
-        Do
-            Console.SetCursorPosition(0, 14)
-            Console.Write("リトライしますか？(Y/N):")
-            playerAnswer = Console.ReadLine()
-        Loop While Not ("Y".Equals(playerAnswer) OrElse "N".Equals(playerAnswer))
+        Dim isPlayerWantToPlayAgain As Boolean
+        Console.SetCursorPosition(0, 14)
+        Console.Write("リトライしますか？(Y/N):")
+        While True
+            Dim c As ConsoleKeyInfo = Console.ReadKey(True)
+            Select Case c.Key
 
-        Return playerAnswer.Equals("Y")
+                Case ConsoleKey.Y
+                    isPlayerWantToPlayAgain = True
+                    Exit While
+                Case ConsoleKey.N
+                    isPlayerWantToPlayAgain = False
+                    Exit While
+                Case Else
+                    Continue While
 
+            End Select
+        End While
+        Return isPlayerWantToPlayAgain
     End Function
 
 End Module
