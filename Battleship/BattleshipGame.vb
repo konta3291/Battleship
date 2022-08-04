@@ -30,8 +30,8 @@
         ShowGameTable(LEFT_EDGE, TOP_EDGE)
         Console.SetCursorPosition(LEFT_EDGE, TOP_EDGE)
         Dim isGameClear As Boolean = False
-        Dim numberOfAttacks As Integer = 0
-        While Not isGameClear AndAlso numberOfAttacks < 24
+        Dim attackedCount As Integer = 0
+        While Not isGameClear AndAlso attackedCount < 24
             Dim c As ConsoleKeyInfo = Console.ReadKey(True)
             Select Case c.Key
 
@@ -48,7 +48,7 @@
                     MoveCursor(0, 1)
 
                 Case ConsoleKey.Enter, ConsoleKey.Spacebar
-                    numberOfAttacks = AttackEnemyship(numberOfAttacks)
+                    attackedCount = AttackEnemyship(attackedCount)
 
             End Select
             isGameClear = IsDefeatedAllTheEnemyShips()
@@ -84,17 +84,17 @@
     ''' <summary>
     ''' 指定のマスに攻撃する
     ''' </summary>
-    ''' <param name="numberOfAttacks"></param>
+    ''' <param name="attackedCount"></param>
     ''' <returns></returns>
-    Private Function AttackEnemyship(numberOfAttacks As Integer) As Integer
+    Private Function AttackEnemyship(attackedCount As Integer) As Integer
         Dim cursorLeft As Integer = Console.CursorLeft
         Dim cursorTop As Integer = Console.CursorTop
         Dim lineNumber As Integer = cursorTop - 4
         Dim columnNumber As Integer = CInt((cursorLeft / 2) - 2)
-        Dim returnNumberOfAttacks As Integer = numberOfAttacks
+        Dim returnAttackedCount As Integer = attackedCount
         Console.Clear()
         If table(lineNumber)(columnNumber) = TypeOfSquare.Enemy OrElse table(lineNumber)(columnNumber) = TypeOfSquare.Naught Then
-            returnNumberOfAttacks += 1
+            returnAttackedCount += 1
             If table(lineNumber)(columnNumber) = TypeOfSquare.Enemy Then
                 table(lineNumber)(columnNumber) = TypeOfSquare.Attacked
             ElseIf table(lineNumber)(columnNumber) = TypeOfSquare.Naught Then
@@ -104,7 +104,7 @@
 
         ShowGameTable(cursorLeft, cursorTop)
         Console.SetCursorPosition(cursorLeft, cursorTop)
-        Return returnNumberOfAttacks
+        Return returnAttackedCount
     End Function
 
     ''' <summary>
