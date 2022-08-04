@@ -47,10 +47,7 @@
                 Case ConsoleKey.DownArrow
                     MoveCursor(0, 1)
 
-                Case ConsoleKey.Enter
-                    numberOfAttacks = AttackEnemyship(numberOfAttacks)
-
-                Case ConsoleKey.Spacebar
+                Case ConsoleKey.Enter, ConsoleKey.Spacebar
                     numberOfAttacks = AttackEnemyship(numberOfAttacks)
 
             End Select
