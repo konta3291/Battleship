@@ -48,7 +48,10 @@
                     MoveCursor(0, 1)
 
                 Case ConsoleKey.Enter, ConsoleKey.Spacebar
-                    attackedCount = AttackEnemyship(attackedCount)
+                    If IsNotAttackedSquare() Then
+                        AttackEnemyship()
+                        attackedCount += 1
+                    End If
 
             End Select
             isGameClear = IsDefeatedAllTheEnemyShips()
@@ -61,6 +64,19 @@
         End If
 
     End Sub
+
+    ''' <summary>
+    ''' 未攻撃のマスか確認する
+    ''' 未攻撃マスならTrue
+    ''' 攻撃済みのマスのマスならFalse
+    ''' </summary>
+    ''' <returns></returns>
+    Private Function IsNotAttackedSquare() As Boolean
+        Dim lineNumber As Integer = Console.CursorTop - 4
+        Dim columnNumber As Integer = CInt((Console.CursorLeft / 2) - 2)
+        Return table(lineNumber)(columnNumber) = TypeOfSquare.Enemy OrElse table(lineNumber)(columnNumber) = TypeOfSquare.Naught
+
+    End Function
 
     ''' <summary>
     ''' 敵船をすべて倒したか確認する
@@ -84,28 +100,21 @@
     ''' <summary>
     ''' 指定のマスに攻撃する
     ''' </summary>
-    ''' <param name="attackedCount"></param>
-    ''' <returns></returns>
-    Private Function AttackEnemyship(attackedCount As Integer) As Integer
+    Private Sub AttackEnemyship()
         Dim cursorLeft As Integer = Console.CursorLeft
         Dim cursorTop As Integer = Console.CursorTop
         Dim lineNumber As Integer = cursorTop - 4
         Dim columnNumber As Integer = CInt((cursorLeft / 2) - 2)
-        Dim returnAttackedCount As Integer = attackedCount
         Console.Clear()
-        If table(lineNumber)(columnNumber) = TypeOfSquare.Enemy OrElse table(lineNumber)(columnNumber) = TypeOfSquare.Naught Then
-            returnAttackedCount += 1
-            If table(lineNumber)(columnNumber) = TypeOfSquare.Enemy Then
-                table(lineNumber)(columnNumber) = TypeOfSquare.Attacked
-            ElseIf table(lineNumber)(columnNumber) = TypeOfSquare.Naught Then
-                table(lineNumber)(columnNumber) = TypeOfSquare.Miss
-            End If
+        If table(lineNumber)(columnNumber) = TypeOfSquare.Enemy Then
+            table(lineNumber)(columnNumber) = TypeOfSquare.Attacked
+        ElseIf table(lineNumber)(columnNumber) = TypeOfSquare.Naught Then
+            table(lineNumber)(columnNumber) = TypeOfSquare.Miss
         End If
 
         ShowGameTable(cursorLeft, cursorTop)
         Console.SetCursorPosition(cursorLeft, cursorTop)
-        Return returnAttackedCount
-    End Function
+    End Sub
 
     ''' <summary>
     ''' ゲームテーブルを表示する
