@@ -45,16 +45,16 @@
             Select Case c.Key
 
                 Case ConsoleKey.LeftArrow
-                    MoveCursor(-2, 0, table)
+                    MoveCursor(-2, 0)
 
                 Case ConsoleKey.RightArrow
-                    MoveCursor(2, 0, table)
+                    MoveCursor(2, 0)
 
                 Case ConsoleKey.UpArrow
-                    MoveCursor(0, -1, table)
+                    MoveCursor(0, -1)
 
                 Case ConsoleKey.DownArrow
-                    MoveCursor(0, 1, table)
+                    MoveCursor(0, 1)
 
                 Case ConsoleKey.Enter, ConsoleKey.Spacebar
                     If IsNotAttackedSquare(table) Then
@@ -63,6 +63,8 @@
                     End If
 
             End Select
+
+            ShowGameScreen(table)
             isGameClear = IsDefeatedAllTheEnemyShips(table)
         End While
         Console.SetCursorPosition(0, 13)
@@ -72,6 +74,19 @@
             Console.Write("ゲームクリアです")
         End If
 
+    End Sub
+
+    ''' <summary>
+    ''' ゲーム画面を表示する
+    ''' タイトル、テーブル、カーソル
+    ''' </summary>
+    ''' <param name="table">ゲームテーブル</param>
+    Private Sub ShowGameScreen(table As Integer()())
+        Dim cursorLeft As Integer = Console.CursorLeft
+        Dim cursorTop As Integer = Console.CursorTop
+        Console.Clear()
+        ShowGameTable(cursorLeft, cursorTop, table)
+        Console.SetCursorPosition(cursorLeft, cursorTop)
     End Sub
 
     ''' <summary>
@@ -115,19 +130,14 @@
     ''' <returns></returns>
     Private Function AttackEnemyship(table As Integer()()) As Integer()()
         Dim returnTable As Integer()() = table
-        Dim cursorLeft As Integer = Console.CursorLeft
-        Dim cursorTop As Integer = Console.CursorTop
-        Dim lineNumber As Integer = cursorTop - 4
-        Dim columnNumber As Integer = CInt((cursorLeft / 2) - 2)
-        Console.Clear()
+        Dim lineNumber As Integer = Console.CursorTop - 4
+        Dim columnNumber As Integer = CInt((Console.CursorLeft / 2) - 2)
         If table(lineNumber)(columnNumber) = TypeOfSquare.Enemy Then
             returnTable(lineNumber)(columnNumber) = TypeOfSquare.Attacked
         ElseIf table(lineNumber)(columnNumber) = TypeOfSquare.Naught Then
             returnTable(lineNumber)(columnNumber) = TypeOfSquare.Miss
         End If
 
-        ShowGameTable(cursorLeft, cursorTop, returnTable)
-        Console.SetCursorPosition(cursorLeft, cursorTop)
         Return returnTable
     End Function
 
@@ -184,8 +194,7 @@
     ''' </summary>
     ''' <param name="x">X座標を移動する値</param>
     ''' <param name="y">Y座標を移動する値</param>
-    ''' <param name="table">ゲームテーブル</param>
-    Private Sub MoveCursor(x As Integer, y As Integer, table As Integer()())
+    Private Sub MoveCursor(x As Integer, y As Integer)
         Dim afterCursorLeft As Integer = Console.CursorLeft + x
         Dim afterCursorTop As Integer = Console.CursorTop + y
         Const RIGHT_EDGE As Integer = 18
@@ -204,8 +213,6 @@
             afterCursorTop = LOWER_EDGE
         End If
 
-        Console.Clear()
-        ShowGameTable(afterCursorLeft, afterCursorTop, table)
         'カーソルの位置を移動させる
         Console.SetCursorPosition(afterCursorLeft, afterCursorTop)
 
