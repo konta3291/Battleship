@@ -94,7 +94,7 @@
     ''' <param name="table">ゲームテーブル</param>
     ''' <returns>すべて倒した場合はTrue
     ''' そうでない場合はFalse</returns>
-    Private Function IsDefeatedAllTheEnemyShips(table As Integer()()) As Boolean
+    Public Function IsDefeatedAllTheEnemyShips(table As Integer()()) As Boolean
 
         For i As Integer = 0 To 7
             For j As Integer = 0 To 7
