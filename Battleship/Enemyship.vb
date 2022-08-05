@@ -11,8 +11,8 @@
     ''' <summary>
     ''' 敵船を作る
     ''' </summary>
-    ''' <param name="enemyshipSizes"></param>
-    ''' <param name="table"></param>
+    ''' <param name="enemyshipSizes">敵船の大きさが入っている配列</param>
+    ''' <param name="table">ゲームテーブル</param>
     ''' <returns></returns>
     Public Function CreateEnemyship(enemyshipSizes As Integer(), table As Integer()()) As Integer()()
         Dim returnTable As Integer()() = table
@@ -31,11 +31,11 @@
     ''' <summary>
     ''' テーブルに敵船を配置
     ''' </summary>
-    ''' <param name="lineBeginPosition"></param>
-    ''' <param name="columnBeginPosition"></param>
-    ''' <param name="enemyshipSize"></param>
-    ''' <param name="verticallyOrHorizontally"></param>
-    ''' <param name="table"></param>
+    ''' <param name="lineBeginPosition">敵船を配置する行の開始位置</param>
+    ''' <param name="columnBeginPosition">敵船を配置する列の開始位置</param>
+    ''' <param name="enemyshipSize">敵船のサイズ</param>
+    ''' <param name="verticallyOrHorizontally">敵船を縦で作るか横で作るか決める変数</param>
+    ''' <param name="table">ゲームテーブル</param>
     ''' <returns></returns>
     Public Function PutInGameTable(lineBeginPosition As Integer, columnBeginPosition As Integer,
                                           enemyshipSize As Integer, verticallyOrHorizontally As Integer, table As Integer()()) As Integer()()
@@ -70,8 +70,8 @@
     ''' 配列の二つ目には、敵船の行での開始位置
     ''' 配列の三つ目には、敵船の列での開始位置
     ''' </summary>
-    ''' <param name="enemyshipSize"></param>
-    ''' <param name="table"></param>
+    ''' <param name="enemyshipSize">敵船のサイズ</param>
+    ''' <param name="table">ゲームテーブル</param>
     ''' <returns></returns>
     Private Function GetNumberNeedToMakeEnemyship(enemyshipSize As Integer, table As Integer()()) As Integer()
         Dim random As New Random
@@ -91,10 +91,10 @@
     ''' <summary>
     ''' 敵船を配置できるか判断する
     ''' </summary>
-    ''' <param name="lineBeginPosition"></param>
-    ''' <param name="columnBeginPosition"></param>
-    ''' <param name="enemyshipSize"></param>
-    ''' <param name="verticallyOrHorizontally"></param>
+    ''' <param name="lineBeginPosition">敵船を配置する行の開始位置</param>
+    ''' <param name="columnBeginPosition">敵船を配置する列の開始位置</param>
+    ''' <param name="enemyshipSize">敵船のサイズ</param>
+    ''' <param name="verticallyOrHorizontally">敵船を縦で作るか横で作るか決める変数</param>
     ''' <returns></returns>
     Public Function CanCreateEnemyship(lineBeginPosition As Integer, columnBeginPosition As Integer,
                                           enemyshipSize As Integer, verticallyOrHorizontally As Integer, table As Integer()()

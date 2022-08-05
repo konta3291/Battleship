@@ -119,6 +119,8 @@
     ''' <summary>
     ''' ゲームテーブルを表示する
     ''' </summary>
+    ''' <param name="cursorLeft">X座標でのカーソルの位置</param>
+    ''' <param name="cursorTop">Y座標でのカーソルの位置</param>
     Private Sub ShowGameTable(cursorLeft As Integer, cursorTop As Integer)
         Console.WriteLine("【BATTLESHIP】")
         Dim columnArrow As String = MakeColumnArrow(cursorLeft)
@@ -153,7 +155,7 @@
     ''' <summary>
     ''' 今いる列を指す矢印を作る
     ''' </summary>
-    ''' <param name="cursorLeft"></param>
+    ''' <param name="cursorLeft">X座標でのカーソルの位置</param>
     ''' <returns></returns>
     Public Function MakeColumnArrow(cursorLeft As Integer) As String
 
@@ -164,8 +166,8 @@
     ''' <summary>
     ''' カーソルを移動させる
     ''' </summary>
-    ''' <param name="x"></param>
-    ''' <param name="y"></param>
+    ''' <param name="x">X座標を移動する値</param>
+    ''' <param name="y">Y座標を移動する値</param>
     Private Sub MoveCursor(x As Integer, y As Integer)
         Dim afterCursorLeft As Integer = Console.CursorLeft + x
         Dim afterCursorTop As Integer = Console.CursorTop + y
