@@ -65,13 +65,23 @@
 
             ShowGameScreen(table)
         End While
-        Console.SetCursorPosition(0, 13)
+        ShowGameResult(table)
+
+    End Sub
+
+    ''' <summary>
+    ''' ゲーム終了後の結果を表示する
+    ''' </summary>
+    ''' <param name="table">ゲームテーブル</param>
+    Private Sub ShowGameResult(table As Integer()())
+        Const UNDER_TABLE_POSITION_LEFT As Integer = 0
+        Const UNDER_TABLE_POSITION_TOP As Integer = 13
+        Console.SetCursorPosition(UNDER_TABLE_POSITION_LEFT, UNDER_TABLE_POSITION_TOP)
         If IsDefeatedAllTheEnemyShips(table) Then
             Console.Write("ゲームクリアです")
         Else
             Console.Write("ゲームオーバーです")
         End If
-
     End Sub
 
     ''' <summary>
