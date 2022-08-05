@@ -38,9 +38,8 @@
         table = enemyship.CreateEnemyship(enemyshipSizes, table)
         ShowGameTable(LEFT_EDGE, TOP_EDGE, table)
         Console.SetCursorPosition(LEFT_EDGE, TOP_EDGE)
-        Dim isGameClear As Boolean = False
         Dim attackedCount As Integer = 0
-        While Not isGameClear AndAlso attackedCount < 24
+        While Not IsDefeatedAllTheEnemyShips(table) AndAlso attackedCount < 24
             Dim c As ConsoleKeyInfo = Console.ReadKey(True)
             Select Case c.Key
 
@@ -65,13 +64,12 @@
             End Select
 
             ShowGameScreen(table)
-            isGameClear = IsDefeatedAllTheEnemyShips(table)
         End While
         Console.SetCursorPosition(0, 13)
-        If Not isGameClear Then
-            Console.Write("ゲームオーバーです")
-        Else
+        If IsDefeatedAllTheEnemyShips(table) Then
             Console.Write("ゲームクリアです")
+        Else
+            Console.Write("ゲームオーバーです")
         End If
 
     End Sub
