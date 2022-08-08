@@ -189,7 +189,7 @@
         Dim afterCursorLeft As Integer = Console.CursorLeft + x
         Dim afterCursorTop As Integer = Console.CursorTop + y
         Const RIGHT_EDGE As Integer = 18
-        Const LOWER_EDGE As Integer = 11
+        Const BOTTOM_EDGE As Integer = 11
         'テーブルからはみ出そうになったら修正
         If afterCursorLeft < LEFT_EDGE Then
             afterCursorLeft = LEFT_EDGE
@@ -200,8 +200,8 @@
         'テーブルからはみ出そうになったら修正
         If afterCursorTop < TOP_EDGE Then
             afterCursorTop = TOP_EDGE
-        ElseIf LOWER_EDGE < afterCursorTop Then
-            afterCursorTop = LOWER_EDGE
+        ElseIf BOTTOM_EDGE < afterCursorTop Then
+            afterCursorTop = BOTTOM_EDGE
         End If
 
         'カーソルの位置を移動させる
