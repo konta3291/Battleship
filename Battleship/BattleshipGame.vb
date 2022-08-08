@@ -57,7 +57,8 @@
 
                 Case ConsoleKey.Enter, ConsoleKey.Spacebar
                     If IsNotAttackedSquare(table) Then
-                        table = AttackEnemyship(table)
+                        Dim attack As New Attack
+                        table = attack.AttackEnemyship(table)
                         attackedCount += 1
                     End If
 
@@ -129,24 +130,6 @@
 
         Return True
 
-    End Function
-
-    ''' <summary>
-    ''' 指定のマスに攻撃する
-    ''' </summary>
-    ''' <param name="table">ゲームテーブル</param>
-    ''' <returns></returns>
-    Private Function AttackEnemyship(table As Integer()()) As Integer()()
-        Dim returnTable As Integer()() = table
-        Dim lineNumber As Integer = Console.CursorTop - 4
-        Dim columnNumber As Integer = CInt((Console.CursorLeft / 2) - 2)
-        If table(lineNumber)(columnNumber) = TypeOfSquare.Enemy Then
-            returnTable(lineNumber)(columnNumber) = TypeOfSquare.Attacked
-        ElseIf table(lineNumber)(columnNumber) = TypeOfSquare.Naught Then
-            returnTable(lineNumber)(columnNumber) = TypeOfSquare.Miss
-        End If
-
-        Return returnTable
     End Function
 
     ''' <summary>
