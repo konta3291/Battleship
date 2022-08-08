@@ -15,8 +15,8 @@
     ''' 戦艦ゲームの処理を行う
     ''' </summary>
     Public Sub BattleshipGame()
-        Dim enemyshipSize As Integer() = {3, 4, 5}
-        CreateEnemyship(enemyshipSize)
+        Dim enemyshipSizes As Integer() = {3, 4, 5}
+        CreateEnemyship(enemyshipSizes)
         ShowGameTable(LEFT_EDGE, TOP_EDGE)
         Console.SetCursorPosition(LEFT_EDGE, TOP_EDGE)
         Dim isGameClear As Boolean = False
@@ -77,26 +77,26 @@
     ''' <summary>
     ''' テーブルに敵船を作る
     ''' </summary>
-    ''' <param name="enemyshipSize"></param>
-    Private Sub CreateEnemyship(enemyshipSize As Integer())
+    ''' <param name="enemyshipSizes"></param>
+    Private Sub CreateEnemyship(enemyshipSizes As Integer())
         Dim random As New Random
         Dim i As Integer = 0
-        While i < enemyshipSize.Length
+        While i < enemyshipSizes.Length
             Dim verticallyOrHorizontally As Integer = random.Next(2)
             Dim lineBeginPosition As Integer = random.Next(8)
             Dim columnBeginPosition As Integer = random.Next(8)
             If verticallyOrHorizontally = 0 Then
                 If lineBeginPosition < 4 Then
-                    If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "+"c) Then
-                        For j As Integer = 0 To enemyshipSize(i) - 1
+                    If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSizes(i) - 1, verticallyOrHorizontally, "+"c) Then
+                        For j As Integer = 0 To enemyshipSizes(i) - 1
                             table(lineBeginPosition + j)(columnBeginPosition) = 1
                         Next
                     Else
                         Continue While
                     End If
                 Else
-                    If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "-"c) Then
-                        For j As Integer = 0 To enemyshipSize(i) - 1
+                    If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSizes(i) - 1, verticallyOrHorizontally, "-"c) Then
+                        For j As Integer = 0 To enemyshipSizes(i) - 1
                             table(lineBeginPosition - j)(columnBeginPosition) = 1
                         Next
                     Else
@@ -105,16 +105,16 @@
                 End If
             ElseIf verticallyOrHorizontally = 1 Then
                 If columnBeginPosition < 4 Then
-                    If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "+"c) Then
-                        For j As Integer = 0 To enemyshipSize(i) - 1
+                    If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSizes(i) - 1, verticallyOrHorizontally, "+"c) Then
+                        For j As Integer = 0 To enemyshipSizes(i) - 1
                             table(lineBeginPosition)(columnBeginPosition + j) = 1
                         Next
                     Else
                         Continue While
                     End If
                 Else
-                    If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize(i) - 1, verticallyOrHorizontally, "-"c) Then
-                        For j As Integer = 0 To enemyshipSize(i) - 1
+                    If CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSizes(i) - 1, verticallyOrHorizontally, "-"c) Then
+                        For j As Integer = 0 To enemyshipSizes(i) - 1
                             table(lineBeginPosition)(columnBeginPosition - j) = 1
                         Next
                     Else
