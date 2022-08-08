@@ -3,12 +3,7 @@
 
     Private sut As Attack
     Private table As Integer()()
-    Private Enum TypeOfSquare
-        Naught = 0
-        Enemy
-        Attacked
-        Miss
-    End Enum
+
     <SetUp> Public Overridable Sub Setup()
         sut = New Attack
         table = {
@@ -30,7 +25,7 @@
             Dim columnNumber As Integer = 0
             Dim result As Integer()() = sut.TurnSquareToAttackedSquare(table, lineNumber, columnNumber)
             table = {
-            New Integer() {TypeOfSquare.Miss, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {BattleshipGame.TypeOfSquare.Miss, 0, 0, 0, 0, 0, 0, 0},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
@@ -46,10 +41,10 @@
         <Test()> Public Sub 敵がいるところに攻撃するとそのマスは攻撃済みになる()
             Dim lineNumber As Integer = 0
             Dim columnNumber As Integer = 0
-            table(0)(0) = TypeOfSquare.Enemy
+            table(0)(0) = BattleshipGame.TypeOfSquare.Enemy
             Dim result As Integer()() = sut.TurnSquareToAttackedSquare(table, lineNumber, columnNumber)
             table = {
-            New Integer() {TypeOfSquare.Attacked, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {BattleshipGame.TypeOfSquare.Attacked, 0, 0, 0, 0, 0, 0, 0},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},

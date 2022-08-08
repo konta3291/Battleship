@@ -1,12 +1,5 @@
 ﻿Public Class Attack
 
-    Private Enum TypeOfSquare
-        Naught = 0
-        Enemy
-        Attacked
-        Miss
-    End Enum
-
     ''' <summary>
     ''' 指定のマスに攻撃する
     ''' </summary>
@@ -31,10 +24,10 @@
     ''' <returns></returns>
     Public Function TurnSquareToAttackedSquare(table As Integer()(), lineNumber As Integer, columnNumber As Integer) As Integer()()
         Dim returnTable As Integer()() = table
-        If table(lineNumber)(columnNumber) = TypeOfSquare.Enemy Then
-            returnTable(lineNumber)(columnNumber) = TypeOfSquare.Attacked
-        ElseIf table(lineNumber)(columnNumber) = TypeOfSquare.Naught Then
-            returnTable(lineNumber)(columnNumber) = TypeOfSquare.Miss
+        If table(lineNumber)(columnNumber) = BattleshipGame.TypeOfSquare.Enemy Then
+            returnTable(lineNumber)(columnNumber) = BattleshipGame.TypeOfSquare.Attacked
+        ElseIf table(lineNumber)(columnNumber) = BattleshipGame.TypeOfSquare.Naught Then
+            returnTable(lineNumber)(columnNumber) = BattleshipGame.TypeOfSquare.Miss
         End If
         Return returnTable
     End Function

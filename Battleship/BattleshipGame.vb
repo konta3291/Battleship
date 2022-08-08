@@ -3,7 +3,7 @@
     Private ReadOnly LEFT_EDGE As Integer = 4
     Private ReadOnly TOP_EDGE As Integer = 4
 
-    Private Enum TypeOfSquare
+    Public Enum TypeOfSquare
         Naught = 0
         Enemy
         Attacked
