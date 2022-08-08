@@ -1,7 +1,9 @@
 ﻿Public Class Enemyship
 
     Private Enum Direction
+        ''' <summary>縦</summary>
         Vertically = 0
+        ''' <summary>横</summary>
         Horizontally
     End Enum
 
