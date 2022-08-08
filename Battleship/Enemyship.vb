@@ -14,7 +14,6 @@
     Public Function CreateEnemyship(enemyshipSizes As Integer(), table As Integer()()) As Integer()()
         Dim returnTable As Integer()() = table
         For Each enemyshipSize As Integer In enemyshipSizes
-            enemyshipSize -= 1
             Dim numberNeedToEnemyship As Integer() = GetNumberNeedToMakeEnemyship(enemyshipSize, returnTable)
             Dim verticallyOrHorizontally As Integer = numberNeedToEnemyship(0)
             Dim lineBeginPosition As Integer = numberNeedToEnemyship(1)
@@ -39,21 +38,21 @@
         Dim returnTable As Integer()() = table
         If verticallyOrHorizontally = Direction.Vertically Then
             If lineBeginPosition < 4 Then
-                For i As Integer = 0 To enemyshipSize
+                For i As Integer = 0 To enemyshipSize - 1
                     returnTable(lineBeginPosition + i)(columnBeginPosition) = BattleshipGame.TypeOfSquare.Enemy
                 Next
             Else
-                For i As Integer = 0 To enemyshipSize
+                For i As Integer = 0 To enemyshipSize - 1
                     returnTable(lineBeginPosition - i)(columnBeginPosition) = BattleshipGame.TypeOfSquare.Enemy
                 Next
             End If
         ElseIf verticallyOrHorizontally = Direction.Horizontally Then
             If columnBeginPosition < 4 Then
-                For i As Integer = 0 To enemyshipSize
+                For i As Integer = 0 To enemyshipSize - 1
                     returnTable(lineBeginPosition)(columnBeginPosition + i) = BattleshipGame.TypeOfSquare.Enemy
                 Next
             Else
-                For i As Integer = 0 To enemyshipSize
+                For i As Integer = 0 To enemyshipSize - 1
                     returnTable(lineBeginPosition)(columnBeginPosition - i) = BattleshipGame.TypeOfSquare.Enemy
                 Next
             End If
@@ -98,13 +97,13 @@
                                           ) As Boolean
         If verticallyOrHorizontally = Direction.Vertically Then
             If lineBeginPosition < 4 Then
-                For i As Integer = 0 To enemyshipSize
+                For i As Integer = 0 To enemyshipSize - 1
                     If Not table(lineBeginPosition + i)(columnBeginPosition) = BattleshipGame.TypeOfSquare.Naught Then
                         Return False
                     End If
                 Next
             Else
-                For i As Integer = 0 To enemyshipSize
+                For i As Integer = 0 To enemyshipSize - 1
                     If Not table(lineBeginPosition - i)(columnBeginPosition) = BattleshipGame.TypeOfSquare.Naught Then
                         Return False
                     End If
@@ -113,13 +112,13 @@
 
         ElseIf verticallyOrHorizontally = Direction.Horizontally Then
             If columnBeginPosition < 4 Then
-                For i As Integer = 0 To enemyshipSize
+                For i As Integer = 0 To enemyshipSize - 1
                     If Not table(lineBeginPosition)(columnBeginPosition + i) = BattleshipGame.TypeOfSquare.Naught Then
                         Return False
                     End If
                 Next
             Else
-                For i As Integer = 0 To enemyshipSize
+                For i As Integer = 0 To enemyshipSize - 1
                     If Not table(lineBeginPosition)(columnBeginPosition - i) = BattleshipGame.TypeOfSquare.Naught Then
                         Return False
                     End If
