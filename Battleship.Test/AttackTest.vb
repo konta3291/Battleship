@@ -23,12 +23,12 @@
         }
         End Sub
 
-    Public Class TurnSquareIntoAttackedSquareTest : Inherits AttackTest
+    Public Class TurnSquareToAttackedSquareTest : Inherits AttackTest
 
         <Test()> Public Sub 敵がいないところに攻撃するとそのマスはミスになる()
             Dim lineNumber As Integer = 0
             Dim columnNumber As Integer = 0
-            Dim result As Integer()() = sut.TurnSquareIntoAttackedSquare(table, lineNumber, columnNumber)
+            Dim result As Integer()() = sut.TurnSquareToAttackedSquare(table, lineNumber, columnNumber)
             table = {
             New Integer() {TypeOfSquare.Miss, 0, 0, 0, 0, 0, 0, 0},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
@@ -47,7 +47,7 @@
             Dim lineNumber As Integer = 0
             Dim columnNumber As Integer = 0
             table(0)(0) = TypeOfSquare.Enemy
-            Dim result As Integer()() = sut.TurnSquareIntoAttackedSquare(table, lineNumber, columnNumber)
+            Dim result As Integer()() = sut.TurnSquareToAttackedSquare(table, lineNumber, columnNumber)
             table = {
             New Integer() {TypeOfSquare.Attacked, 0, 0, 0, 0, 0, 0, 0},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
