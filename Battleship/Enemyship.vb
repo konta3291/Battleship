@@ -3,7 +3,7 @@
         Naught = 0
         Enemy
     End Enum
-    Private Enum VerticallyOrHorizontallyList
+    Private Enum Direction
         Vertically = 0
         Horizontally
     End Enum
@@ -40,7 +40,7 @@
     Public Function PutInGameTable(lineBeginPosition As Integer, columnBeginPosition As Integer,
                                           enemyshipSize As Integer, verticallyOrHorizontally As Integer, table As Integer()()) As Integer()()
         Dim returnTable As Integer()() = table
-        If verticallyOrHorizontally = VerticallyOrHorizontallyList.Vertically Then
+        If verticallyOrHorizontally = Direction.Vertically Then
             If lineBeginPosition < 4 Then
                 For i As Integer = 0 To enemyshipSize
                     returnTable(lineBeginPosition + i)(columnBeginPosition) = TypeOfSquare.Enemy
@@ -50,7 +50,7 @@
                     returnTable(lineBeginPosition - i)(columnBeginPosition) = TypeOfSquare.Enemy
                 Next
             End If
-        ElseIf verticallyOrHorizontally = VerticallyOrHorizontallyList.Horizontally Then
+        ElseIf verticallyOrHorizontally = Direction.Horizontally Then
             If columnBeginPosition < 4 Then
                 For i As Integer = 0 To enemyshipSize
                     returnTable(lineBeginPosition)(columnBeginPosition + i) = TypeOfSquare.Enemy
@@ -99,7 +99,7 @@
     Public Function CanCreateEnemyship(lineBeginPosition As Integer, columnBeginPosition As Integer,
                                           enemyshipSize As Integer, verticallyOrHorizontally As Integer, table As Integer()()
                                           ) As Boolean
-        If verticallyOrHorizontally = VerticallyOrHorizontallyList.Vertically Then
+        If verticallyOrHorizontally = Direction.Vertically Then
             If lineBeginPosition < 4 Then
                 For i As Integer = 0 To enemyshipSize
                     If Not table(lineBeginPosition + i)(columnBeginPosition) = TypeOfSquare.Naught Then
@@ -114,7 +114,7 @@
                 Next
             End If
 
-        ElseIf verticallyOrHorizontally = VerticallyOrHorizontallyList.Horizontally Then
+        ElseIf verticallyOrHorizontally = Direction.Horizontally Then
             If columnBeginPosition < 4 Then
                 For i As Integer = 0 To enemyshipSize
                     If Not table(lineBeginPosition)(columnBeginPosition + i) = TypeOfSquare.Naught Then
