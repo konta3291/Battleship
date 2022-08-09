@@ -4,7 +4,7 @@
     ''' 指定のマスに攻撃する
     ''' </summary>
     ''' <param name="table">ゲームテーブル</param>
-    ''' <returns></returns>
+    ''' <returns>指定のマスを攻撃後のゲームテーブルを返す</returns>
     Public Function AttackEnemyship(table As Integer()()) As Integer()()
         Dim returnTable As Integer()() = table
         Dim lineNumber As Integer = Console.CursorTop - 4
@@ -21,7 +21,7 @@
     ''' <param name="table">ゲームテーブル</param>
     ''' <param name="lineNumber">行の位置</param>
     ''' <param name="columnNumber">列の位置</param>
-    ''' <returns></returns>
+    ''' <returns>指定のマスを攻撃後のゲームテーブルを返す</returns>
     Public Function TurnSquareToAttackedSquare(table As Integer()(), lineNumber As Integer, columnNumber As Integer) As Integer()()
         Dim returnTable As Integer()() = table
         If table(lineNumber)(columnNumber) = BattleshipGame.TypeOfSquare.Enemy Then

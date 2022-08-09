@@ -17,7 +17,7 @@
     ''' <summary>
     ''' ゲームテーブルを作る
     ''' </summary>
-    ''' <returns></returns>
+    ''' <returns>ゲームテーブルを返す</returns>
     Private Function CreateGameTable() As Integer()()
         Dim table As Integer()() = {
           New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
@@ -104,11 +104,10 @@
 
     ''' <summary>
     ''' 未攻撃のマスか確認する
-    ''' 未攻撃マスならTrue
-    ''' 攻撃済みのマスのマスならFalse
     ''' </summary>
     ''' <param name="table">ゲームテーブル</param>
-    ''' <returns></returns>
+    ''' <returns>未攻撃マスならTrue
+    ''' 攻撃済みのマスのマスならFalse</returns>
     Private Function IsNotAttackedSquare(table As Integer()()) As Boolean
         Dim lineNumber As Integer = Console.CursorTop - 4
         Dim columnNumber As Integer = CInt((Console.CursorLeft / 2) - 2)
@@ -177,7 +176,7 @@
     ''' 今いる列を指す矢印を作る
     ''' </summary>
     ''' <param name="cursorLeft">X座標でのカーソルの位置</param>
-    ''' <returns></returns>
+    ''' <returns>今いる列を指す矢印を返す</returns>
     Public Function MakeColumnArrow(cursorLeft As Integer) As String
 
         Return "↓".PadLeft(cursorLeft + 1, " "c)

@@ -12,7 +12,7 @@
     ''' </summary>
     ''' <param name="enemyshipSizes">敵船の大きさが入っている配列</param>
     ''' <param name="table">ゲームテーブル</param>
-    ''' <returns></returns>
+    ''' <returns>敵船が入ったゲームテーブルを返す</returns>
     Public Function CreateEnemyship(enemyshipSizes As Integer(), table As Integer()()) As Integer()()
         Dim returnTable As Integer()() = table
         For Each enemyshipSize As Integer In enemyshipSizes
@@ -34,7 +34,7 @@
     ''' <param name="enemyshipSize">敵船のサイズ</param>
     ''' <param name="verticallyOrHorizontally">敵船を縦で作るか横で作るか決める変数</param>
     ''' <param name="table">ゲームテーブル</param>
-    ''' <returns></returns>
+    ''' <returns>敵船が入ったゲームテーブルを返す</returns>
     Public Function PutInGameTable(lineBeginPosition As Integer, columnBeginPosition As Integer,
                                           enemyshipSize As Integer, verticallyOrHorizontally As Integer, table As Integer()()) As Integer()()
         Dim returnTable As Integer()() = table
@@ -64,13 +64,12 @@
 
     ''' <summary>
     ''' 敵船を作る処理に必要な三つのランダム数を返す
-    ''' 配列の一つ目には、敵船を縦か、横に作るかを判断する数字
-    ''' 配列の二つ目には、敵船の行での開始位置
-    ''' 配列の三つ目には、敵船の列での開始位置
     ''' </summary>
     ''' <param name="enemyshipSize">敵船のサイズ</param>
     ''' <param name="table">ゲームテーブル</param>
-    ''' <returns></returns>
+    ''' <returns>配列の一つ目には、敵船を縦か、横に作るかを判断する数字
+    ''' 配列の二つ目には、敵船の行での開始位置
+    ''' 配列の三つ目には、敵船の列での開始位置</returns>
     Private Function GetNumberNeedToMakeEnemyship(enemyshipSize As Integer, table As Integer()()) As Integer()
         Dim random As New Random
         Dim verticallyOrHorizontally As Integer
@@ -93,7 +92,7 @@
     ''' <param name="columnBeginPosition">敵船を配置する列の開始位置</param>
     ''' <param name="enemyshipSize">敵船のサイズ</param>
     ''' <param name="verticallyOrHorizontally">敵船を縦で作るか横で作るか決める変数</param>
-    ''' <returns></returns>
+    ''' <returns>敵船を配置できる場合はTrue、そうでない場合はFalseを返す</returns>
     Public Function CanCreateEnemyship(lineBeginPosition As Integer, columnBeginPosition As Integer,
                                           enemyshipSize As Integer, verticallyOrHorizontally As Integer, table As Integer()()
                                           ) As Boolean
