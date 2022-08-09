@@ -1,5 +1,5 @@
 ﻿Public Class Enemyship
-
+    Private vntmev As New ValueNeedToMakeEnemyship.Value
     Private Enum Direction
         ''' <summary>縦</summary>
         Vertically = 0
@@ -16,11 +16,8 @@
     Public Function CreateEnemyship(enemyshipSizes As Integer(), table As Integer()()) As Integer()()
         Dim returnTable As Integer()() = table
         For Each enemyshipSize As Integer In enemyshipSizes
-            Dim numberNeedToEnemyship As Integer() = GetNumberNeedToMakeEnemyship(enemyshipSize, returnTable)
-            Dim verticallyOrHorizontally As Integer = numberNeedToEnemyship(0)
-            Dim lineBeginPosition As Integer = numberNeedToEnemyship(1)
-            Dim columnBeginPosition As Integer = numberNeedToEnemyship(2)
-            returnTable = PutInGameTable(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
+            MakeNumberNeedToCreateEnemyship(enemyshipSize, table)
+            returnTable = PutInGameTable(vntmev.lineBeginPosition, vntmev.columnBeginPosition, enemyshipSize, vntmev.verticallyOrHorizontally, table)
         Next
 
         Return returnTable
@@ -67,10 +64,7 @@
     ''' </summary>
     ''' <param name="enemyshipSize">敵船のサイズ</param>
     ''' <param name="table">ゲームテーブル</param>
-    ''' <returns>配列の一つ目には、敵船を縦か、横に作るかを判断する数字
-    ''' 配列の二つ目には、敵船の行での開始位置
-    ''' 配列の三つ目には、敵船の列での開始位置</returns>
-    Private Function GetNumberNeedToMakeEnemyship(enemyshipSize As Integer, table As Integer()()) As Integer()
+    Private Sub MakeNumberNeedToCreateEnemyship(enemyshipSize As Integer, table As Integer()())
         Dim random As New Random
         Dim verticallyOrHorizontally As Integer
         Dim lineBeginPosition As Integer
@@ -80,10 +74,10 @@
             lineBeginPosition = random.Next(8)
             columnBeginPosition = random.Next(8)
         Loop While Not CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
-        Dim numberNeedToMakeEnemyship As Integer() = {verticallyOrHorizontally, lineBeginPosition, columnBeginPosition}
-        Return numberNeedToMakeEnemyship
 
-    End Function
+        vntmev.SetValueNeedToMakeEnemyship(verticallyOrHorizontally, lineBeginPosition, columnBeginPosition)
+
+    End Sub
 
     ''' <summary>
     ''' 敵船を配置できるか判断する
