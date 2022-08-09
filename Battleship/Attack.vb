@@ -3,12 +3,12 @@
     ''' <summary>
     ''' 指定のマスに攻撃する
     ''' </summary>
+    ''' <param name="lineNumber">行位置</param>
+    ''' <param name="columnNumber">列位置</param>
     ''' <param name="table">ゲームテーブル</param>
     ''' <returns>指定のマスを攻撃後のゲームテーブルを返す</returns>
-    Public Function AttackEnemyship(table As Integer()()) As Integer()()
+    Public Function AttackEnemyship(lineNumber As Integer, columnNumber As Integer, table As Integer()()) As Integer()()
         Dim returnTable As Integer()() = table
-        Dim lineNumber As Integer = Console.CursorTop - 4
-        Dim columnNumber As Integer = CInt((Console.CursorLeft / 2) - 2)
 
         returnTable = TurnSquareToAttackedSquare(returnTable, lineNumber, columnNumber)
 

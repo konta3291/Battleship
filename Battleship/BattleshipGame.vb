@@ -60,9 +60,11 @@
                     MoveCursor(0, 1)
 
                 Case ConsoleKey.Enter, ConsoleKey.Spacebar
-                    If IsNotAttackedSquare(table) Then
+                    Dim lineNumber As Integer = Console.CursorTop - 4
+                    Dim columnNumber As Integer = CInt((Console.CursorLeft / 2) - 2)
+                    If IsNotAttackedSquare(lineNumber, columnNumber, table) Then
                         Dim attack As New Attack
-                        table = attack.AttackEnemyship(table)
+                        table = attack.AttackEnemyship(lineNumber, columnNumber, table)
                         attackedCount += 1
                     End If
 
@@ -105,12 +107,13 @@
     ''' <summary>
     ''' 未攻撃のマスか確認する
     ''' </summary>
+    ''' <param name="lineNumber">行位置</param>
+    ''' <param name="columnNumber">列位置</param>
     ''' <param name="table">ゲームテーブル</param>
     ''' <returns>未攻撃マスならTrue
     ''' 攻撃済みのマスのマスならFalse</returns>
-    Private Function IsNotAttackedSquare(table As Integer()()) As Boolean
-        Dim lineNumber As Integer = Console.CursorTop - 4
-        Dim columnNumber As Integer = CInt((Console.CursorLeft / 2) - 2)
+    Private Function IsNotAttackedSquare(lineNumber As Integer, columnNumber As Integer, table As Integer()()) As Boolean
+
         Return table(lineNumber)(columnNumber) = TypeOfSquare.Enemy OrElse table(lineNumber)(columnNumber) = TypeOfSquare.Naught
 
     End Function
