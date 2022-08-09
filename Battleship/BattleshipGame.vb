@@ -3,6 +3,9 @@
     Private ReadOnly LEFT_EDGE As Integer = 4
     Private ReadOnly TOP_EDGE As Integer = 4
 
+    ''' <summary>
+    ''' マスの種類
+    ''' </summary>
     Public Enum TypeOfSquare
         ''' <summary>空マス</summary>
         Naught = 0
