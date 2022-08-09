@@ -12,7 +12,7 @@
     ''' </summary>
     ''' <param name="enemyshipSizes">敵船の大きさが入っている配列</param>
     ''' <param name="table">ゲームテーブル</param>
-    ''' <returns>敵船が入ったゲームテーブルを返す</returns>
+    ''' <returns>敵船が入ったゲームテーブル</returns>
     Public Function CreateEnemyship(enemyshipSizes As Integer(), table As Integer()()) As Integer()()
         Dim returnTable As Integer()() = table
         For Each enemyshipSize As Integer In enemyshipSizes
@@ -31,7 +31,7 @@
     ''' <param name="enemyshipSize">敵船のサイズ</param>
     ''' <param name="verticallyOrHorizontally">敵船を縦で作るか横で作るか決める変数</param>
     ''' <param name="table">ゲームテーブル</param>
-    ''' <returns>敵船が入ったゲームテーブルを返す</returns>
+    ''' <returns>敵船が入ったゲームテーブル</returns>
     Public Function PutInGameTable(lineBeginPosition As Integer, columnBeginPosition As Integer,
                                           enemyshipSize As Integer, verticallyOrHorizontally As Integer, table As Integer()()) As Integer()()
         Dim returnTable As Integer()() = table
@@ -86,7 +86,7 @@
     ''' <param name="columnBeginPosition">敵船を配置する列の開始位置</param>
     ''' <param name="enemyshipSize">敵船のサイズ</param>
     ''' <param name="verticallyOrHorizontally">敵船を縦で作るか横で作るか決める変数</param>
-    ''' <returns>敵船を配置できる場合はTrue、そうでない場合はFalseを返す</returns>
+    ''' <returns>敵船を配置できる場合はTrue、そうでない場合はFalse</returns>
     Public Function CanCreateEnemyship(lineBeginPosition As Integer, columnBeginPosition As Integer,
                                           enemyshipSize As Integer, verticallyOrHorizontally As Integer, table As Integer()()
                                           ) As Boolean

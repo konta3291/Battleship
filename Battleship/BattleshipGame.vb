@@ -20,7 +20,7 @@
     ''' <summary>
     ''' ゲームテーブルを作る
     ''' </summary>
-    ''' <returns>ゲームテーブルを返す</returns>
+    ''' <returns>ゲームテーブル</returns>
     Private Function CreateGameTable() As Integer()()
         Dim table As Integer()() = {
           New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
