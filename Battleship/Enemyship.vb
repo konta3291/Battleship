@@ -17,7 +17,7 @@
         Dim returnTable As Integer()() = table
         For Each enemyshipSize As Integer In enemyshipSizes
             MakeNumberNeedToCreateEnemyship(enemyshipSize, table)
-            returnTable = PutInGameTable(vntmev.lineBeginPosition, vntmev.columnBeginPosition, enemyshipSize, vntmev.verticallyOrHorizontally, table)
+            returnTable = PutInGameTable(vntmev.LineBeginPosition, vntmev.ColumnBeginPosition, enemyshipSize, vntmev.VerticallyOrHorizontally, table)
         Next
 
         Return returnTable

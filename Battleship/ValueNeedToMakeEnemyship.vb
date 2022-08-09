@@ -6,13 +6,13 @@
     Public Structure Value
 
         ''' <summary>敵船を縦で作るか横で作るか決める変数</summary>
-        Public verticallyOrHorizontally As Integer
+        Public VerticallyOrHorizontally As Integer
 
         ''' <summary>敵船を配置する行の開始位置</summary>
-        Public lineBeginPosition As Integer
+        Public LineBeginPosition As Integer
 
         ''' <summary>敵船を配置する列の開始位置</summary>
-        Public columnBeginPosition As Integer
+        Public ColumnBeginPosition As Integer
 
         ''' <summary>
         ''' 受け取った値を各々の変数に格納
@@ -21,9 +21,9 @@
         ''' <param name="lineBeginPosition">敵船を配置する行の開始位置</param>
         ''' <param name="columnBeginPosition">敵船を配置する列の開始位置</param>
         Public Sub SetValueNeedToMakeEnemyship(verticallyOrHorizontally As Integer, lineBeginPosition As Integer, columnBeginPosition As Integer)
-            Me.verticallyOrHorizontally = verticallyOrHorizontally
-            Me.lineBeginPosition = lineBeginPosition
-            Me.columnBeginPosition = columnBeginPosition
+            Me.VerticallyOrHorizontally = verticallyOrHorizontally
+            Me.LineBeginPosition = lineBeginPosition
+            Me.ColumnBeginPosition = columnBeginPosition
         End Sub
 
     End Structure
