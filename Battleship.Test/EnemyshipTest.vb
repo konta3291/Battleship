@@ -79,7 +79,7 @@
             Assert.IsFalse(result)
         End Sub
 
-        <Test()> Public Sub 下壁に向け垂直に敵船を作ろうとすると上に向けて作る処理に変更されるか()
+        <Test()> Public Sub 下壁に向け垂直に敵船を作ろうとすると上に向けて作る処理に変更される()
             Dim lineBeginPosition As Integer = 7
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 3
@@ -89,7 +89,7 @@
             Assert.IsTrue(result)
         End Sub
 
-        <Test()> Public Sub 右壁に向け水平に敵船を作ろうとすると左に向けて作る処理に変更されるか()
+        <Test()> Public Sub 右壁に向け水平に敵船を作ろうとすると左に向けて作る処理に変更される()
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 7
             Dim enemyshipSize As Integer = 3
