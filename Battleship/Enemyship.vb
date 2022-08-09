@@ -1,5 +1,5 @@
 ﻿Public Class Enemyship
-    Private vntmev As New ValueNeedToMakeEnemyship.Value
+    Private valueNeedToMakeEnemyship As New ValueNeedToMakeEnemyship
     Private Enum Direction
         ''' <summary>縦</summary>
         Vertically = 0
@@ -17,7 +17,7 @@
         Dim returnTable As Integer()() = table
         For Each enemyshipSize As Integer In enemyshipSizes
             MakeNumberNeedToCreateEnemyship(enemyshipSize, table)
-            returnTable = PutInGameTable(vntmev.LineBeginPosition, vntmev.ColumnBeginPosition, enemyshipSize, vntmev.VerticallyOrHorizontally, table)
+            returnTable = PutInGameTable(valueNeedToMakeEnemyship.LineBeginPosition, valueNeedToMakeEnemyship.ColumnBeginPosition, enemyshipSize, valueNeedToMakeEnemyship.VerticallyOrHorizontally, table)
         Next
 
         Return returnTable
@@ -75,7 +75,7 @@
             columnBeginPosition = random.Next(8)
         Loop While Not CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
 
-        vntmev.SetValueNeedToMakeEnemyship(verticallyOrHorizontally, lineBeginPosition, columnBeginPosition)
+        valueNeedToMakeEnemyship.SetValueNeedToMakeEnemyship(verticallyOrHorizontally, lineBeginPosition, columnBeginPosition)
 
     End Sub
 
