@@ -22,7 +22,7 @@
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 3
-            Dim verticallyOrHorizontally As Integer = 0
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Vertically
 
             Dim result As Boolean = sut.CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
             Assert.IsTrue(result)
@@ -32,7 +32,7 @@
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 3
-            Dim verticallyOrHorizontally As Integer = 1
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Horizontally
 
             Dim result As Boolean = sut.CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
             Assert.IsTrue(result)
@@ -42,7 +42,7 @@
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 3
-            Dim verticallyOrHorizontally As Integer = 0
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Vertically
             table(1)(0) = 1
 
             Dim result As Boolean = sut.CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
@@ -52,7 +52,7 @@
             Dim lineBeginPosition As Integer = 4
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 5
-            Dim verticallyOrHorizontally As Integer = 0
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Vertically
             table(1)(0) = 1
 
             Dim result As Boolean = sut.CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
@@ -63,7 +63,7 @@
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 3
-            Dim verticallyOrHorizontally As Integer = 1
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Horizontally
             table(0)(1) = 1
             Dim result As Boolean = sut.CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
             Assert.IsFalse(result)
@@ -73,7 +73,7 @@
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 4
             Dim enemyshipSize As Integer = 5
-            Dim verticallyOrHorizontally As Integer = 1
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Horizontally
             table(0)(1) = 1
             Dim result As Boolean = sut.CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
             Assert.IsFalse(result)
@@ -83,7 +83,7 @@
             Dim lineBeginPosition As Integer = 7
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 3
-            Dim verticallyOrHorizontally As Integer = 0
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Vertically
 
             Dim result As Boolean = sut.CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
             Assert.IsTrue(result)
@@ -93,7 +93,7 @@
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 7
             Dim enemyshipSize As Integer = 3
-            Dim verticallyOrHorizontally As Integer = 1
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Horizontally
 
             Dim result As Boolean = sut.CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
             Assert.IsTrue(result)
@@ -107,7 +107,7 @@
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 3
-            Dim verticallyOrHorizontally As Integer = 0
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Vertically
             Dim result As Integer()() = sut.PutInGameTable(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
             table = {
             New Integer() {1, 0, 0, 0, 0, 0, 0, 0},
@@ -125,7 +125,7 @@
             Dim lineBeginPosition As Integer = 4
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 3
-            Dim verticallyOrHorizontally As Integer = 0
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Vertically
             Dim result As Integer()() = sut.PutInGameTable(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
             table = {
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
@@ -143,7 +143,7 @@
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 3
-            Dim verticallyOrHorizontally As Integer = 1
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Horizontally
             Dim result As Integer()() = sut.PutInGameTable(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
             table = {
             New Integer() {1, 1, 1, 0, 0, 0, 0, 0},
@@ -162,7 +162,7 @@
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 4
             Dim enemyshipSize As Integer = 3
-            Dim verticallyOrHorizontally As Integer = 1
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Horizontally
             Dim result As Integer()() = sut.PutInGameTable(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
             table = {
             New Integer() {0, 0, 1, 1, 1, 0, 0, 0},
@@ -181,7 +181,7 @@
             Dim lineBeginPosition As Integer = 7
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 3
-            Dim verticallyOrHorizontally As Integer = 0
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Vertically
             Dim result As Integer()() = sut.PutInGameTable(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
             table = {
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
@@ -200,7 +200,7 @@
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 7
             Dim enemyshipSize As Integer = 3
-            Dim verticallyOrHorizontally As Integer = 1
+            Dim verticallyOrHorizontally As Integer = Enemyship.Direction.Horizontally
             Dim result As Integer()() = sut.PutInGameTable(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
             table = {
             New Integer() {0, 0, 0, 0, 0, 1, 1, 1},

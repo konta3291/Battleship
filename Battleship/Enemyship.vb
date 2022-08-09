@@ -1,6 +1,10 @@
 ﻿Public Class Enemyship
     Private valueNeedToMakeEnemyship As New ValueNeedToMakeEnemyship
-    Private Enum Direction
+
+    ''' <summary>
+    ''' 敵船を作る向き
+    ''' </summary>
+    Public Enum Direction
         ''' <summary>縦</summary>
         Vertically = 0
         ''' <summary>横</summary>
