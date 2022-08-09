@@ -83,7 +83,7 @@
 
     Public Class PutInGameTableTest : Inherits EnemyshipTest
 
-        <Test()> Public Sub 下に向け垂直に敵船を配置するか()
+        <Test()> Public Sub 下に向け垂直に敵船を配置できる()
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 3
@@ -101,7 +101,7 @@
         }
             Assert.That(result, [Is].EqualTo(table))
         End Sub
-        <Test()> Public Sub 上に向け垂直に敵船を配置するか()
+        <Test()> Public Sub 上に向け垂直に敵船を配置できる()
             Dim lineBeginPosition As Integer = 4
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 3
@@ -119,7 +119,7 @@
         }
             Assert.That(result, [Is].EqualTo(table))
         End Sub
-        <Test()> Public Sub 右に向け水平に敵船を配置するか()
+        <Test()> Public Sub 右に向け水平に敵船を配置できる()
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 0
             Dim enemyshipSize As Integer = 3
@@ -138,7 +138,7 @@
             Assert.That(result, [Is].EqualTo(table))
         End Sub
 
-        <Test()> Public Sub 左に向け水平に敵船を配置するか()
+        <Test()> Public Sub 左に向け水平に敵船を配置できる()
             Dim lineBeginPosition As Integer = 0
             Dim columnBeginPosition As Integer = 4
             Dim enemyshipSize As Integer = 3
