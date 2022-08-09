@@ -79,6 +79,26 @@
             Assert.IsFalse(result)
         End Sub
 
+        <Test()> Public Sub 下壁に向け垂直に敵船を作ろうとすると上に向けて作る処理に変更されるか()
+            Dim lineBeginPosition As Integer = 7
+            Dim columnBeginPosition As Integer = 0
+            Dim enemyshipSize As Integer = 3
+            Dim verticallyOrHorizontally As Integer = 0
+
+            Dim result As Boolean = sut.CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
+            Assert.IsTrue(result)
+        End Sub
+
+        <Test()> Public Sub 右壁に向け水平に敵船を作ろうとすると左に向けて作る処理に変更されるか()
+            Dim lineBeginPosition As Integer = 0
+            Dim columnBeginPosition As Integer = 7
+            Dim enemyshipSize As Integer = 3
+            Dim verticallyOrHorizontally As Integer = 1
+
+            Dim result As Boolean = sut.CanCreateEnemyship(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
+            Assert.IsTrue(result)
+        End Sub
+
     End Class
 
     Public Class PutInGameTableTest : Inherits EnemyshipTest
@@ -146,6 +166,44 @@
             Dim result As Integer()() = sut.PutInGameTable(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
             table = {
             New Integer() {0, 0, 1, 1, 1, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0}
+        }
+            Assert.That(result, [Is].EqualTo(table))
+        End Sub
+
+        <Test()> Public Sub 下壁に向け垂直に敵船を作ろうとすると上に向け敵船が作られる()
+            Dim lineBeginPosition As Integer = 7
+            Dim columnBeginPosition As Integer = 0
+            Dim enemyshipSize As Integer = 3
+            Dim verticallyOrHorizontally As Integer = 0
+            Dim result As Integer()() = sut.PutInGameTable(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
+            table = {
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {1, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {1, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {1, 0, 0, 0, 0, 0, 0, 0}
+        }
+            Assert.That(result, [Is].EqualTo(table))
+        End Sub
+
+        <Test()> Public Sub 右壁に向け水平に敵船を作ろうとすると左に向け敵船が作られる()
+            Dim lineBeginPosition As Integer = 0
+            Dim columnBeginPosition As Integer = 7
+            Dim enemyshipSize As Integer = 3
+            Dim verticallyOrHorizontally As Integer = 1
+            Dim result As Integer()() = sut.PutInGameTable(lineBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
+            table = {
+            New Integer() {0, 0, 0, 0, 0, 1, 1, 1},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
