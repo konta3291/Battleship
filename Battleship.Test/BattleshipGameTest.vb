@@ -14,4 +14,38 @@
 
     End Class
 
+    Public Class IsDefeatedAllTheEnemyShipsTest : Inherits BattleshipGameTest
+
+        <Test()> Public Sub テーブルの中に敵船を表す1がなければTrue()
+            Dim table As Integer()() = {
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0}
+        }
+            Dim result As Boolean = sut.IsDefeatedAllTheEnemyShips(table)
+            Assert.IsTrue(result)
+        End Sub
+
+        <Test()> Public Sub テーブルの中に敵船を表す1があればFalse()
+            Dim table As Integer()() = {
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 1, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+            New Integer() {0, 0, 0, 0, 0, 0, 0, 0}
+        }
+            Dim result As Boolean = sut.IsDefeatedAllTheEnemyShips(table)
+            Assert.IsFalse(result)
+        End Sub
+
+    End Class
+
 End Class

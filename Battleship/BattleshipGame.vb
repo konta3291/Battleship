@@ -48,7 +48,7 @@
         ShowGameTable(LEFT_EDGE, TOP_EDGE, table)
         Console.SetCursorPosition(LEFT_EDGE, TOP_EDGE)
         Dim cursor As New Cursor
-        While True
+        While Not IsDefeatedAllTheEnemyShips(table)
             Dim c As ConsoleKeyInfo = Console.ReadKey(True)
             Select Case c.Key
 
@@ -73,7 +73,38 @@
             End Select
             ShowGameScreen(table)
         End While
+        ShowGameResult(table)
     End Sub
+
+    ''' <summary>
+    ''' ゲーム終了後の結果を表示する
+    ''' </summary>
+    ''' <param name="table">ゲームテーブル</param>
+    Private Sub ShowGameResult(table As Integer()())
+        Const UNDER_TABLE_POSITION_LEFT As Integer = 0
+        Const UNDER_TABLE_POSITION_TOP As Integer = 13
+        Console.SetCursorPosition(UNDER_TABLE_POSITION_LEFT, UNDER_TABLE_POSITION_TOP)
+        Console.Write("ゲームクリアです")
+    End Sub
+
+    ''' <summary>
+    ''' 敵船をすべて倒したか確認する
+    ''' </summary>
+    ''' <param name="table">ゲームテーブル</param>
+    ''' <returns>すべて倒した場合はTrue、そうでない場合はFalse</returns>
+    Public Function IsDefeatedAllTheEnemyShips(table As Integer()()) As Boolean
+
+        For i As Integer = 0 To 7
+            For j As Integer = 0 To 7
+                If table(i)(j) = TypeOfSquare.Enemy Then
+                    Return False
+                End If
+            Next
+        Next
+
+        Return True
+
+    End Function
 
     ''' <summary>
     ''' ゲーム画面を表示する（タイトル、テーブル、カーソル）
