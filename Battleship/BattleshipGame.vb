@@ -20,9 +20,28 @@
     End Enum
 
     ''' <summary>
+    ''' ゲームテーブルを作る
+    ''' </summary>
+    ''' <returns>ゲームテーブル</returns>
+    Private Function CreateGameTable() As Integer()()
+        Dim table As Integer()() = {
+          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
+          New Integer() {0, 0, 0, 0, 0, 0, 0, 0}
+      }
+        Return table
+    End Function
+
+    ''' <summary>
     ''' 戦艦ゲームの処理を行う
     ''' </summary>
     Public Sub ExecuteBattleshipGameProcess()
+        Dim table As Integer()() = CreateGameTable()
         ShowGameTable(LEFT_EDGE, TOP_EDGE)
         Console.SetCursorPosition(LEFT_EDGE, TOP_EDGE)
         Dim cursor As New Cursor
