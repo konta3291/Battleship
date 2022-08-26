@@ -1,5 +1,10 @@
 ﻿Public Class BattleshipGame
 
+    ''' <summary>テーブルの左端の位置</summary>
+    Public ReadOnly LEFT_EDGE As Integer = 4
+    ''' <summary>テーブルの上端の位置</summary>
+    Public ReadOnly TOP_EDGE As Integer = 4
+
     ''' <summary>
     ''' マスの種類
     ''' </summary>
@@ -19,6 +24,38 @@
     ''' </summary>
     Public Sub ExecuteBattleshipGameProcess()
         ShowGameTable()
+        Console.SetCursorPosition(LEFT_EDGE, TOP_EDGE)
+        Dim cursor As New Cursor
+        While True
+            Dim c As ConsoleKeyInfo = Console.ReadKey(True)
+            Select Case c.Key
+
+                Case ConsoleKey.LeftArrow
+                    cursor.MoveCursor(-2, 0)
+
+                Case ConsoleKey.RightArrow
+                    cursor.MoveCursor(2, 0)
+
+                Case ConsoleKey.UpArrow
+                    cursor.MoveCursor(0, -1)
+
+                Case ConsoleKey.DownArrow
+                    cursor.MoveCursor(0, 1)
+
+            End Select
+            ShowGameScreen()
+        End While
+    End Sub
+
+    ''' <summary>
+    ''' ゲーム画面を表示する（タイトル、テーブル、カーソル）
+    ''' </summary>
+    Private Sub ShowGameScreen()
+        Dim cursorLeft As Integer = Console.CursorLeft
+        Dim cursorTop As Integer = Console.CursorTop
+        Console.Clear()
+        ShowGameTable()
+        Console.SetCursorPosition(cursorLeft, cursorTop)
     End Sub
 
     ''' <summary>
