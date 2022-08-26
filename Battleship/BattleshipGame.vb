@@ -45,7 +45,7 @@
         Dim enemyshipSizes As Integer() = {3, 4, 5}
         Dim enemyship As New Enemyship
         table = enemyship.CreateEnemyship(enemyshipSizes, table)
-        ShowGameTable(LEFT_EDGE, TOP_EDGE)
+        ShowGameTable(LEFT_EDGE, TOP_EDGE, table)
         Console.SetCursorPosition(LEFT_EDGE, TOP_EDGE)
         Dim cursor As New Cursor
         While True
@@ -64,19 +64,26 @@
                 Case ConsoleKey.DownArrow
                     cursor.MoveCursor(0, 1)
 
+                Case ConsoleKey.Enter, ConsoleKey.Spacebar
+                    Dim lineNumber As Integer = Console.CursorTop - 4
+                    Dim columnNumber As Integer = CInt((Console.CursorLeft / 2) - 2)
+                    Dim attack As New Attack
+                    table = attack.AttackEnemyship(lineNumber, columnNumber, table)
+
             End Select
-            ShowGameScreen()
+            ShowGameScreen(table)
         End While
     End Sub
 
     ''' <summary>
     ''' ゲーム画面を表示する（タイトル、テーブル、カーソル）
     ''' </summary>
-    Private Sub ShowGameScreen()
+    ''' <param name="table">ゲームテーブル</param>
+    Private Sub ShowGameScreen(table As Integer()())
         Dim cursorLeft As Integer = Console.CursorLeft
         Dim cursorTop As Integer = Console.CursorTop
         Console.Clear()
-        ShowGameTable(cursorLeft, cursorTop)
+        ShowGameTable(cursorLeft, cursorTop, table)
         Console.SetCursorPosition(cursorLeft, cursorTop)
     End Sub
 
@@ -85,7 +92,8 @@
     ''' </summary>
     ''' <param name="cursorLeft">X座標でのカーソルの位置</param>
     ''' <param name="cursorTop">Y座標でのカーソルの位置</param>
-    Private Sub ShowGameTable(cursorLeft As Integer, cursorTop As Integer)
+    ''' <param name="table">ゲームテーブル</param>
+    Private Sub ShowGameTable(cursorLeft As Integer, cursorTop As Integer, table As Integer()())
         Console.WriteLine("【BATTLESHIP】")
         Dim columnArrow As String = MakeColumnArrow(cursorLeft)
         Console.WriteLine(columnArrow)
@@ -102,7 +110,13 @@
             End If
             Console.Write(i + 1 & "|")
             For j As Integer = 0 To 7
-                Console.Write("  ")
+                If table(i)(j) = TypeOfSquare.Attacked Then
+                    Console.Write("〇")
+                ElseIf table(i)(j) = TypeOfSquare.Miss Then
+                    Console.Write("×")
+                Else
+                    Console.Write("  ")
+                End If
             Next
             Console.WriteLine("|")
         Next
