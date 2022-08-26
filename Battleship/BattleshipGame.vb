@@ -47,8 +47,9 @@
         table = enemyship.CreateEnemyship(enemyshipSizes, table)
         ShowGameTable(LEFT_EDGE, TOP_EDGE, table)
         Console.SetCursorPosition(LEFT_EDGE, TOP_EDGE)
+        Dim attackedCount As Integer = 0
         Dim cursor As New Cursor
-        While Not IsDefeatedAllTheEnemyShips(table)
+        While Not IsDefeatedAllTheEnemyShips(table) AndAlso attackedCount < 24
             Dim c As ConsoleKeyInfo = Console.ReadKey(True)
             Select Case c.Key
 
@@ -67,8 +68,11 @@
                 Case ConsoleKey.Enter, ConsoleKey.Spacebar
                     Dim lineNumber As Integer = Console.CursorTop - 4
                     Dim columnNumber As Integer = CInt((Console.CursorLeft / 2) - 2)
-                    Dim attack As New Attack
-                    table = attack.AttackEnemyship(lineNumber, columnNumber, table)
+                    If IsNotAttackedSquare(lineNumber, columnNumber, table) Then
+                        Dim attack As New Attack
+                        table = attack.AttackEnemyship(lineNumber, columnNumber, table)
+                        attackedCount += 1
+                    End If
 
             End Select
             ShowGameScreen(table)
@@ -84,7 +88,11 @@
         Const UNDER_TABLE_POSITION_LEFT As Integer = 0
         Const UNDER_TABLE_POSITION_TOP As Integer = 13
         Console.SetCursorPosition(UNDER_TABLE_POSITION_LEFT, UNDER_TABLE_POSITION_TOP)
-        Console.Write("ゲームクリアです")
+        If IsDefeatedAllTheEnemyShips(table) Then
+            Console.Write("ゲームクリアです")
+        Else
+            Console.Write("ゲームオーバーです")
+        End If
     End Sub
 
     ''' <summary>
@@ -103,6 +111,19 @@
         Next
 
         Return True
+
+    End Function
+
+    ''' <summary>
+    ''' 未攻撃のマスか確認する
+    ''' </summary>
+    ''' <param name="lineNumber">行位置</param>
+    ''' <param name="columnNumber">列位置</param>
+    ''' <param name="table">ゲームテーブル</param>
+    ''' <returns>未攻撃マスならTrue、攻撃済みのマスならFalse</returns>
+    Public Function IsNotAttackedSquare(lineNumber As Integer, columnNumber As Integer, table As Integer()()) As Boolean
+
+        Return table(lineNumber)(columnNumber) = TypeOfSquare.Enemy OrElse table(lineNumber)(columnNumber) = TypeOfSquare.Naught
 
     End Function
 
