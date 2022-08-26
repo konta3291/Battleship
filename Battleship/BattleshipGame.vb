@@ -42,6 +42,9 @@
     ''' </summary>
     Public Sub ExecuteBattleshipGameProcess()
         Dim table As Integer()() = CreateGameTable()
+        Dim enemyshipSizes As Integer() = {3, 4, 5}
+        Dim enemyship As New Enemyship
+        table = enemyship.CreateEnemyship(enemyshipSizes, table)
         ShowGameTable(LEFT_EDGE, TOP_EDGE)
         Console.SetCursorPosition(LEFT_EDGE, TOP_EDGE)
         Dim cursor As New Cursor
