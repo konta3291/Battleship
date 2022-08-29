@@ -167,7 +167,7 @@
                 ElseIf table(i)(j) = TypeOfSquare.Miss Then
                     Console.Write("×")
                 Else
-                    Console.Write("  ")
+                    Console.Write("　")
                 End If
             Next
             Console.WriteLine("|")
