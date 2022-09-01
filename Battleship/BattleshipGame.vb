@@ -1,10 +1,5 @@
 ﻿Public Class BattleshipGame
 
-    ''' <summary>テーブルの左端の位置</summary>
-    Public ReadOnly LEFT_EDGE As Integer = 4
-    ''' <summary>テーブルの上端の位置</summary>
-    Public ReadOnly TOP_EDGE As Integer = 4
-
     ''' <summary>
     ''' マスの種類
     ''' </summary>
@@ -45,8 +40,8 @@
         Dim enemyshipSizes As Integer() = {3, 4, 5}
         Dim enemyship As New Enemyship
         table = enemyship.CreateEnemyship(enemyshipSizes, table)
-        ShowGameTable(LEFT_EDGE, TOP_EDGE, table)
-        Console.SetCursorPosition(LEFT_EDGE, TOP_EDGE)
+        ShowGameTable(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE, table)
+        Console.SetCursorPosition(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
         Dim attackedCount As Integer = 0
         Dim cursor As New Cursor
         While Not IsDefeatedAllTheEnemyShips(table) AndAlso attackedCount < 24

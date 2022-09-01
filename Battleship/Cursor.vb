@@ -20,14 +20,12 @@
     ''' <param name="cursorLeft">水平でのカーソル位置</param>
     ''' <returns>はみ出そうになったカーソル位置を修正した値</returns>
     Public Function CorrectOfLeftAndRightPositionThatWentOffGameTable(cursorLeft As Integer) As Integer
-        Dim battleshipGame As New BattleshipGame
-        Const RIGHT_EDGE As Integer = 18
         Dim returnCursorLeft As Integer = cursorLeft
 
-        If cursorLeft < battleshipGame.LEFT_EDGE Then
-            returnCursorLeft = battleshipGame.LEFT_EDGE
-        ElseIf RIGHT_EDGE < cursorLeft Then
-            returnCursorLeft = RIGHT_EDGE
+        If cursorLeft < GameTableValue.LEFT_EDGE Then
+            returnCursorLeft = GameTableValue.LEFT_EDGE
+        ElseIf GameTableValue.RIGHT_EDGE < cursorLeft Then
+            returnCursorLeft = GameTableValue.RIGHT_EDGE
         End If
 
         Return returnCursorLeft
@@ -40,14 +38,12 @@
     ''' <param name="cursorTop">垂直でのカーソル位置</param>
     ''' <returns>はみ出そうになったカーソル位置を修正した値</returns>
     Public Function CorrectOfTopAndBottomPositionThatWentOffGameTable(cursorTop As Integer) As Integer
-        Dim battleshipGame As New BattleshipGame
-        Const BOTTOM_EDGE As Integer = 11
         Dim returnCursorTop As Integer = cursorTop
 
-        If cursorTop < battleshipGame.TOP_EDGE Then
-            returnCursorTop = battleshipGame.TOP_EDGE
-        ElseIf BOTTOM_EDGE < cursorTop Then
-            returnCursorTop = BOTTOM_EDGE
+        If cursorTop < GameTableValue.TOP_EDGE Then
+            returnCursorTop = GameTableValue.TOP_EDGE
+        ElseIf GameTableValue.BOTTOM_EDGE < cursorTop Then
+            returnCursorTop = GameTableValue.BOTTOM_EDGE
         End If
 
         Return returnCursorTop

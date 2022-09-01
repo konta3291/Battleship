@@ -77,6 +77,7 @@
     <Compile Include="BattleshipGame.vb" />
     <Compile Include="Cursor.vb" />
     <Compile Include="Enemyship.vb" />
+    <Compile Include="GameTableValue.vb" />
     <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
