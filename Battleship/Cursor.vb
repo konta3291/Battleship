@@ -8,10 +8,15 @@
     Public Sub MoveCursor(x As Integer, y As Integer)
         Dim afterCursorLeft As Integer = CorrectOfLeftAndRightPositionThatWentOffGameTable(Console.CursorLeft + x)
         Dim afterCursorTop As Integer = CorrectOfTopAndBottomPositionThatWentOffGameTable(Console.CursorTop + y)
-
-        'カーソルの位置を移動させる
-        Console.SetCursorPosition(afterCursorLeft, afterCursorTop)
-
+        Dim arrow As New Arrow
+        Console.CursorVisible = False
+        Try
+            arrow.MoveArrow(afterCursorLeft, afterCursorTop)
+            'カーソルの位置を移動させる
+            Console.SetCursorPosition(afterCursorLeft, afterCursorTop)
+        Finally
+            Console.CursorVisible = True
+        End Try
     End Sub
 
     ''' <summary>

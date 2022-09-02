@@ -41,6 +41,8 @@
         Dim enemyship As New Enemyship
         table = enemyship.CreateEnemyship(enemyshipSizes, table)
         ShowGameScreen()
+        Dim arrow As New Arrow
+        arrow.ShowArrow(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
         Console.SetCursorPosition(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
         Dim attackedCount As Integer = 0
         Dim cursor As New Cursor
