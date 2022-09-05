@@ -11,7 +11,7 @@
         Dim returnTable As Integer()() = table
 
         returnTable = TurnSquareToAttackedSquare(returnTable, lineNumber, columnNumber)
-
+        ChangeSquare(lineNumber, columnNumber, returnTable)
         Return returnTable
     End Function
 
@@ -31,5 +31,27 @@
         End If
         Return returnTable
     End Function
+
+    ''' <summary>
+    ''' 画面でのマスを変える
+    ''' </summary>
+    ''' <param name="lineNumber">行の位置</param>
+    ''' <param name="columnNumber">列の位置</param>
+    ''' <param name="table">ゲームテーブル</param>
+    Private Sub ChangeSquare(lineNumber As Integer, columnNumber As Integer, table As Integer()())
+        Dim cursorTop As Integer = Console.CursorTop
+        Dim cursorLeft As Integer = Console.CursorLeft
+        Console.CursorVisible = False
+        Try
+            If table(lineNumber)(columnNumber) = BattleshipGame.TypeOfSquare.Attacked Then
+                Console.Write("〇")
+            ElseIf table(lineNumber)(columnNumber) = BattleshipGame.TypeOfSquare.Miss Then
+                Console.Write("×")
+            End If
+            Console.SetCursorPosition(cursorLeft, cursorTop)
+        Finally
+            Console.CursorVisible = True
+        End Try
+    End Sub
 
 End Class

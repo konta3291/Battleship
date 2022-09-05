@@ -1,10 +1,5 @@
 ﻿Public Class BattleshipGame
 
-    ''' <summary>テーブルの左端の位置</summary>
-    Public ReadOnly LEFT_EDGE As Integer = 4
-    ''' <summary>テーブルの上端の位置</summary>
-    Public ReadOnly TOP_EDGE As Integer = 4
-
     ''' <summary>
     ''' マスの種類
     ''' </summary>
@@ -45,8 +40,10 @@
         Dim enemyshipSizes As Integer() = {3, 4, 5}
         Dim enemyship As New Enemyship
         table = enemyship.CreateEnemyship(enemyshipSizes, table)
-        ShowGameTable(LEFT_EDGE, TOP_EDGE, table)
-        Console.SetCursorPosition(LEFT_EDGE, TOP_EDGE)
+        ShowGameScreen()
+        Dim arrow As New Arrow
+        arrow.ShowArrow(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
+        Console.SetCursorPosition(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
         Dim attackedCount As Integer = 0
         Dim cursor As New Cursor
         While Not IsDefeatedAllTheEnemyShips(table) AndAlso attackedCount < 24
@@ -75,7 +72,7 @@
                     End If
 
             End Select
-            ShowGameScreen(table)
+
         End While
         ShowGameResult(table)
     End Sub
@@ -128,63 +125,25 @@
     End Function
 
     ''' <summary>
-    ''' ゲーム画面を表示する（タイトル、テーブル、カーソル）
+    ''' ゲーム画面を表示
     ''' </summary>
-    ''' <param name="table">ゲームテーブル</param>
-    Private Sub ShowGameScreen(table As Integer()())
-        Dim cursorLeft As Integer = Console.CursorLeft
-        Dim cursorTop As Integer = Console.CursorTop
-        Console.Clear()
-        ShowGameTable(cursorLeft, cursorTop, table)
-        Console.SetCursorPosition(cursorLeft, cursorTop)
-    End Sub
-
-    ''' <summary>
-    ''' ゲームテーブルを表示する
-    ''' </summary>
-    ''' <param name="cursorLeft">X座標でのカーソルの位置</param>
-    ''' <param name="cursorTop">Y座標でのカーソルの位置</param>
-    ''' <param name="table">ゲームテーブル</param>
-    Private Sub ShowGameTable(cursorLeft As Integer, cursorTop As Integer, table As Integer()())
+    Private Sub ShowGameScreen()
         Console.WriteLine("【BATTLESHIP】")
-        Dim columnArrow As String = MakeColumnArrow(cursorLeft)
-        Console.WriteLine(columnArrow)
+        Console.WriteLine()
 
         '表
         Console.WriteLine("    A B C D E F G H ")
         Console.WriteLine("    ________________")
         For i As Integer = 0 To 7
-            If cursorTop - 4 = i Then
-                Const ROW_ARROW As String = "→"
-                Console.Write(ROW_ARROW)
-            Else
-                Console.Write("  ")
-            End If
+            Console.Write("  ")
             Console.Write(i + 1 & "|")
             For j As Integer = 0 To 7
-                If table(i)(j) = TypeOfSquare.Attacked Then
-                    Console.Write("〇")
-                ElseIf table(i)(j) = TypeOfSquare.Miss Then
-                    Console.Write("×")
-                Else
-                    Console.Write("　")
-                End If
+                Console.Write("　")
             Next
             Console.WriteLine("|")
         Next
         Console.Write("    ¯¯¯¯¯¯¯¯")
 
     End Sub
-
-    ''' <summary>
-    ''' 今いる列を指す矢印を作る
-    ''' </summary>
-    ''' <param name="cursorLeft">X座標でのカーソルの位置</param>
-    ''' <returns>今いる列を指す矢印を返す</returns>
-    Public Function MakeColumnArrow(cursorLeft As Integer) As String
-
-        Return "↓".PadLeft(cursorLeft + 1, " "c)
-
-    End Function
 
 End Class
