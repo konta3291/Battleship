@@ -82,9 +82,9 @@
     ''' </summary>
     ''' <param name="table">ゲームテーブル</param>
     Private Sub ShowGameResult(table As Integer()())
-        Const UNDER_TABLE_POSITION_LEFT As Integer = 0
-        Const UNDER_TABLE_POSITION_TOP As Integer = 13
-        Console.SetCursorPosition(UNDER_TABLE_POSITION_LEFT, UNDER_TABLE_POSITION_TOP)
+        Const LEFT_POSITION_OF_DISPLAYING_RESULT As Integer = 0
+        Const TOP_POSITION_OF_DISPLAYING_RESULT As Integer = GameTableValue.BOTTOM_EDGE + 3
+        Console.SetCursorPosition(LEFT_POSITION_OF_DISPLAYING_RESULT, TOP_POSITION_OF_DISPLAYING_RESULT)
         If IsDefeatedAllTheEnemyShips(table) Then
             Console.Write("ゲームクリアです")
         Else
