@@ -40,13 +40,14 @@
         Dim enemyshipSizes As Integer() = {3, 4, 5}
         Dim enemyship As New Enemyship
         table = enemyship.CreateEnemyship(enemyshipSizes, table)
+        Dim bulletsAtStart As Integer = 24
         ShowGameScreen()
         Dim arrow As New Arrow
         arrow.ShowArrow(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
         Console.SetCursorPosition(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
-        Dim attackedCount As Integer = 0
+        Dim remainingBullet As Integer = bulletsAtStart
         Dim cursor As New Cursor
-        While Not IsDefeatedAllTheEnemyShips(table) AndAlso attackedCount < 24
+        While Not IsDefeatedAllTheEnemyShips(table) AndAlso 0 < remainingBullet
             Dim c As ConsoleKeyInfo = Console.ReadKey(True)
             Select Case c.Key
 
@@ -68,7 +69,7 @@
                     If IsNotAttackedSquare(lineNumber, columnNumber, table) Then
                         Dim attack As New Attack
                         table = attack.AttackEnemyship(lineNumber, columnNumber, table)
-                        attackedCount += 1
+                        remainingBullet -= 1
                     End If
 
             End Select
