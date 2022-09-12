@@ -51,6 +51,7 @@
         arrow.ShowArrow(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
         Console.SetCursorPosition(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
         remainingBullet = bulletsAtStart
+        ScreenRemainingBullets.ShowRemainingBullets(remainingBullet, bulletsAtStart)
         While Not IsDefeatedAllTheEnemyShips(table) AndAlso 0 < remainingBullet
             Dim c As ConsoleKeyInfo = Console.ReadKey(True)
             DetectAction(c.Key).DoAction()
@@ -144,6 +145,7 @@
                 Dim attack As New Attack
                 table = attack.AttackEnemyship(lineNumber, columnNumber, table)
                 remainingBullet -= 1
+                ScreenRemainingBullets.ShowRemainingBullets(remainingBullet, bulletsAtStart)
             End If
         End Sub
     End Class
