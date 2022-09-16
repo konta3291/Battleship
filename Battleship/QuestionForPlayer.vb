@@ -1,4 +1,7 @@
-﻿Public Class QuestionForPlayer
+﻿''' <summary>
+''' プレイヤ-にリトライするか聞くクラス
+''' </summary>
+Public Class QuestionForPlayer
 
     ''' <summary>
     ''' もう一度遊ぶか聞き、入力の結果を返す

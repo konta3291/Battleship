@@ -1,4 +1,7 @@
-﻿Public Class Attack
+﻿''' <summary>
+''' 攻撃する処理を持つクラス
+''' </summary>
+Public Class Attack
 
     ''' <summary>
     ''' 指定のマスに攻撃する
