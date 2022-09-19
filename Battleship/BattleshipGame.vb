@@ -180,9 +180,9 @@
     ''' <returns>すべて倒した場合はTrue、そうでない場合はFalse</returns>
     Public Function IsDefeatedAllTheEnemyShips(table As Integer()()) As Boolean
 
-        For i As Integer = 0 To table.Length - 1
-            For j As Integer = 0 To table(i).Length - 1
-                If table(i)(j) = TypeOfSquare.Enemy Then
+        For row As Integer = 0 To table.Length - 1
+            For column As Integer = 0 To table(row).Length - 1
+                If table(row)(column) = TypeOfSquare.Enemy Then
                     Return False
                 End If
             Next
@@ -216,10 +216,10 @@
         '表
         Console.WriteLine("    A B C D E F G H ")
         Console.WriteLine("    ________________")
-        For i As Integer = 0 To table.Length - 1
+        For row As Integer = 0 To table.Length - 1
             Console.Write("  ")
-            Console.Write(i + 1 & "|")
-            For j As Integer = 0 To table(i).Length - 1
+            Console.Write(row + 1 & "|")
+            For column As Integer = 0 To table(row).Length - 1
                 Console.Write("　")
             Next
             Console.WriteLine("|")
