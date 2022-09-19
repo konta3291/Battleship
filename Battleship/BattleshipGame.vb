@@ -165,12 +165,43 @@
     Private Sub ShowGameResult(table As Integer()())
         Const LEFT_POSITION_OF_DISPLAYING_RESULT As Integer = 0
         Const TOP_POSITION_OF_DISPLAYING_RESULT As Integer = GameTableValue.BOTTOM_EDGE + 3
-        Console.SetCursorPosition(LEFT_POSITION_OF_DISPLAYING_RESULT, TOP_POSITION_OF_DISPLAYING_RESULT)
         If IsDefeatedAllTheEnemyShips(table) Then
+            Console.SetCursorPosition(LEFT_POSITION_OF_DISPLAYING_RESULT, TOP_POSITION_OF_DISPLAYING_RESULT)
             Console.Write("ゲームクリアです")
         Else
+            ShowEnemyship(table)
+            Console.SetCursorPosition(LEFT_POSITION_OF_DISPLAYING_RESULT, TOP_POSITION_OF_DISPLAYING_RESULT)
             Console.Write("ゲームオーバーです")
         End If
+    End Sub
+
+    ''' <summary>
+    ''' 攻撃されていない敵船を表示
+    ''' </summary>
+    ''' <param name="table">ゲームテーブル</param>
+    Private Sub ShowEnemyship(table As Integer()())
+        Console.CursorVisible = False
+        Try
+            For row As Integer = 0 To table.Length - 1
+                For column As Integer = 0 To table(row).Length - 1
+                    If table(row)(column) = TypeOfSquare.Enemy Then
+                        ChangeSquareToEnemyshipSquare(row, column)
+                    End If
+                Next
+            Next
+        Finally
+            Console.CursorVisible = True
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 画面でのマスを敵船を表すマスに変える
+    ''' </summary>
+    ''' <param name="rowNumber">行位置</param>
+    ''' <param name="columnNumber">列位置</param>
+    Private Sub ChangeSquareToEnemyshipSquare(rowNumber As Integer, columnNumber As Integer)
+        Console.SetCursorPosition((columnNumber + 2) * 2, rowNumber + 4)
+        Console.Write("△")
     End Sub
 
     ''' <summary>
