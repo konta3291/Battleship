@@ -46,7 +46,7 @@
         Dim enemyship As New Enemyship
         table = enemyship.CreateEnemyship(enemyshipSizes, table)
         bulletsAtStart = 24
-        ShowGameScreen()
+        ShowGameScreen(table)
         Dim arrow As New Arrow
         arrow.ShowArrow(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
         Console.SetCursorPosition(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
@@ -180,8 +180,8 @@
     ''' <returns>すべて倒した場合はTrue、そうでない場合はFalse</returns>
     Public Function IsDefeatedAllTheEnemyShips(table As Integer()()) As Boolean
 
-        For i As Integer = 0 To 7
-            For j As Integer = 0 To 7
+        For i As Integer = 0 To table.Length - 1
+            For j As Integer = 0 To table(i).Length - 1
                 If table(i)(j) = TypeOfSquare.Enemy Then
                     Return False
                 End If
@@ -208,17 +208,18 @@
     ''' <summary>
     ''' ゲーム画面を表示
     ''' </summary>
-    Private Sub ShowGameScreen()
+    ''' <param name="table">ゲームテーブル</param>
+    Private Sub ShowGameScreen(table As Integer()())
         Console.WriteLine("【BATTLESHIP】")
         Console.WriteLine()
 
         '表
         Console.WriteLine("    A B C D E F G H ")
         Console.WriteLine("    ________________")
-        For i As Integer = 0 To 7
+        For i As Integer = 0 To table.Length - 1
             Console.Write("  ")
             Console.Write(i + 1 & "|")
-            For j As Integer = 0 To 7
+            For j As Integer = 0 To table(i).Length - 1
                 Console.Write("　")
             Next
             Console.WriteLine("|")
