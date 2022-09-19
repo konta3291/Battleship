@@ -139,11 +139,11 @@
         ''' 攻撃する処理を行う
         ''' </summary>
         Private Sub DoAction() Implements InputKeyAction.DoAction
-            Dim lineNumber As Integer = Console.CursorTop - 4
+            Dim rowNumber As Integer = Console.CursorTop - 4
             Dim columnNumber As Integer = CInt((Console.CursorLeft / 2) - 2)
-            If IsNotAttackedSquare(lineNumber, columnNumber, table) Then
+            If IsNotAttackedSquare(rowNumber, columnNumber, table) Then
                 Dim attack As New Attack
-                table = attack.AttackEnemyship(lineNumber, columnNumber, table)
+                table = attack.AttackEnemyship(rowNumber, columnNumber, table)
                 remainingBullet -= 1
                 ScreenRemainingBullets.ShowRemainingBullets(remainingBullet, bulletsAtStart)
             End If
@@ -195,13 +195,13 @@
     ''' <summary>
     ''' 未攻撃のマスか確認する
     ''' </summary>
-    ''' <param name="lineNumber">行位置</param>
+    ''' <param name="rowNumber">行位置</param>
     ''' <param name="columnNumber">列位置</param>
     ''' <param name="table">ゲームテーブル</param>
     ''' <returns>未攻撃マスならTrue、攻撃済みのマスならFalse</returns>
-    Public Shared Function IsNotAttackedSquare(lineNumber As Integer, columnNumber As Integer, table As Integer()()) As Boolean
+    Public Shared Function IsNotAttackedSquare(rowNumber As Integer, columnNumber As Integer, table As Integer()()) As Boolean
 
-        Return table(lineNumber)(columnNumber) = TypeOfSquare.Enemy OrElse table(lineNumber)(columnNumber) = TypeOfSquare.Naught
+        Return table(rowNumber)(columnNumber) = TypeOfSquare.Enemy OrElse table(rowNumber)(columnNumber) = TypeOfSquare.Naught
 
     End Function
 
