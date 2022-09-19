@@ -55,7 +55,7 @@
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0}
         }
 
-            Dim result As Boolean = sut.IsNotAttackedSquare(lineNumber, columnNumber, table)
+            Dim result As Boolean = BattleshipGame.IsNotAttackedSquare(lineNumber, columnNumber, table)
             Assert.IsTrue(result)
         End Sub
 
@@ -73,7 +73,7 @@
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0}
         }
 
-            Dim result As Boolean = sut.IsNotAttackedSquare(lineNumber, columnNumber, table)
+            Dim result As Boolean = BattleshipGame.IsNotAttackedSquare(lineNumber, columnNumber, table)
             Assert.IsTrue(result)
         End Sub
 
@@ -91,7 +91,7 @@
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0}
         }
 
-            Dim result As Boolean = sut.IsNotAttackedSquare(lineNumber, columnNumber, table)
+            Dim result As Boolean = BattleshipGame.IsNotAttackedSquare(lineNumber, columnNumber, table)
             Assert.IsFalse(result)
         End Sub
 
@@ -109,7 +109,7 @@
             New Integer() {0, 0, 0, 0, 0, 0, 0, 0}
         }
 
-            Dim result As Boolean = sut.IsNotAttackedSquare(lineNumber, columnNumber, table)
+            Dim result As Boolean = BattleshipGame.IsNotAttackedSquare(lineNumber, columnNumber, table)
             Assert.IsFalse(result)
         End Sub
 
