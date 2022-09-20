@@ -49,7 +49,7 @@ Public Class BattleshipGame
         Dim enemyship As New Enemyship
         table = enemyship.CreateEnemyship(enemyshipSizes, table)
         bulletsAtStart = 24
-        ShowGameScreen()
+        ShowGameScreen(table)
         Dim arrow As New Arrow
         arrow.ShowArrow(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
         Console.SetCursorPosition(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
@@ -142,11 +142,11 @@ Public Class BattleshipGame
         ''' 攻撃する処理を行う
         ''' </summary>
         Private Sub DoAction() Implements InputKeyAction.DoAction
-            Dim lineNumber As Integer = Console.CursorTop - 4
+            Dim rowNumber As Integer = Console.CursorTop - 4
             Dim columnNumber As Integer = CInt((Console.CursorLeft / 2) - 2)
-            If IsNotAttackedSquare(lineNumber, columnNumber, table) Then
+            If IsNotAttackedSquare(rowNumber, columnNumber, table) Then
                 Dim attack As New Attack
-                table = attack.AttackEnemyship(lineNumber, columnNumber, table)
+                table = attack.AttackEnemyship(rowNumber, columnNumber, table)
                 remainingBullet -= 1
                 ScreenRemainingBullets.ShowRemainingBullets(remainingBullet, bulletsAtStart)
             End If
@@ -168,12 +168,43 @@ Public Class BattleshipGame
     Private Sub ShowGameResult(table As Integer()())
         Const LEFT_POSITION_OF_DISPLAYING_RESULT As Integer = 0
         Const TOP_POSITION_OF_DISPLAYING_RESULT As Integer = GameTableValue.BOTTOM_EDGE + 3
-        Console.SetCursorPosition(LEFT_POSITION_OF_DISPLAYING_RESULT, TOP_POSITION_OF_DISPLAYING_RESULT)
         If IsDefeatedAllTheEnemyShips(table) Then
+            Console.SetCursorPosition(LEFT_POSITION_OF_DISPLAYING_RESULT, TOP_POSITION_OF_DISPLAYING_RESULT)
             Console.Write("ゲームクリアです")
         Else
+            ShowEnemyship(table)
+            Console.SetCursorPosition(LEFT_POSITION_OF_DISPLAYING_RESULT, TOP_POSITION_OF_DISPLAYING_RESULT)
             Console.Write("ゲームオーバーです")
         End If
+    End Sub
+
+    ''' <summary>
+    ''' 攻撃されていない敵船を表示
+    ''' </summary>
+    ''' <param name="table">ゲームテーブル</param>
+    Private Sub ShowEnemyship(table As Integer()())
+        Console.CursorVisible = False
+        Try
+            For row As Integer = 0 To table.Length - 1
+                For column As Integer = 0 To table(row).Length - 1
+                    If table(row)(column) = TypeOfSquare.Enemy Then
+                        ChangeSquareToEnemyshipSquare(row, column)
+                    End If
+                Next
+            Next
+        Finally
+            Console.CursorVisible = True
+        End Try
+    End Sub
+
+    ''' <summary>
+    ''' 画面でのマスを敵船を表すマスに変える
+    ''' </summary>
+    ''' <param name="rowNumber">行位置</param>
+    ''' <param name="columnNumber">列位置</param>
+    Private Sub ChangeSquareToEnemyshipSquare(rowNumber As Integer, columnNumber As Integer)
+        Console.SetCursorPosition((columnNumber + 2) * 2, rowNumber + 4)
+        Console.Write("△")
     End Sub
 
     ''' <summary>
@@ -183,9 +214,9 @@ Public Class BattleshipGame
     ''' <returns>すべて倒した場合はTrue、そうでない場合はFalse</returns>
     Public Function IsDefeatedAllTheEnemyShips(table As Integer()()) As Boolean
 
-        For i As Integer = 0 To 7
-            For j As Integer = 0 To 7
-                If table(i)(j) = TypeOfSquare.Enemy Then
+        For row As Integer = 0 To table.Length - 1
+            For column As Integer = 0 To table(row).Length - 1
+                If table(row)(column) = TypeOfSquare.Enemy Then
                     Return False
                 End If
             Next
@@ -198,30 +229,31 @@ Public Class BattleshipGame
     ''' <summary>
     ''' 未攻撃のマスか確認する
     ''' </summary>
-    ''' <param name="lineNumber">行位置</param>
+    ''' <param name="rowNumber">行位置</param>
     ''' <param name="columnNumber">列位置</param>
     ''' <param name="table">ゲームテーブル</param>
     ''' <returns>未攻撃マスならTrue、攻撃済みのマスならFalse</returns>
-    Public Shared Function IsNotAttackedSquare(lineNumber As Integer, columnNumber As Integer, table As Integer()()) As Boolean
+    Public Shared Function IsNotAttackedSquare(rowNumber As Integer, columnNumber As Integer, table As Integer()()) As Boolean
 
-        Return table(lineNumber)(columnNumber) = TypeOfSquare.Enemy OrElse table(lineNumber)(columnNumber) = TypeOfSquare.Naught
+        Return table(rowNumber)(columnNumber) = TypeOfSquare.Enemy OrElse table(rowNumber)(columnNumber) = TypeOfSquare.Naught
 
     End Function
 
     ''' <summary>
     ''' ゲーム画面を表示
     ''' </summary>
-    Private Sub ShowGameScreen()
+    ''' <param name="table">ゲームテーブル</param>
+    Private Sub ShowGameScreen(table As Integer()())
         Console.WriteLine("【BATTLESHIP】")
         Console.WriteLine()
 
         '表
         Console.WriteLine("    A B C D E F G H ")
         Console.WriteLine("    ________________")
-        For i As Integer = 0 To 7
+        For row As Integer = 0 To table.Length - 1
             Console.Write("  ")
-            Console.Write(i + 1 & "|")
-            For j As Integer = 0 To 7
+            Console.Write(row + 1 & "|")
+            For column As Integer = 0 To table(row).Length - 1
                 Console.Write("　")
             Next
             Console.WriteLine("|")
