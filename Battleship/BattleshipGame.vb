@@ -1,4 +1,7 @@
-﻿Public Class BattleshipGame
+﻿''' <summary>
+''' 海戦ゲームの処理を行うクラス
+''' </summary>
+Public Class BattleshipGame
     ''' <summary>ゲームテーブル</summary>
     Private Shared table As Integer()()
     ''' <summary>開始時の弾数</summary>

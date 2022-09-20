@@ -1,4 +1,7 @@
-﻿Public Class GameTableValue
+﻿''' <summary>
+''' ゲームテーブルの大きさの値を持つクラス
+''' </summary>
+Public Class GameTableValue
 
     ''' <summary>テーブルの上端の位置</summary>
     Public Const TOP_EDGE As Integer = 4

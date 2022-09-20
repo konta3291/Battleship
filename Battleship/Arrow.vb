@@ -1,4 +1,7 @@
-﻿Public Class Arrow
+﻿''' <summary>
+''' 現在マスを指す矢印を表示するクラス
+''' </summary>
+Public Class Arrow
 
     ''' <summary>
     ''' カーソルの位置を指す矢印を移動させる

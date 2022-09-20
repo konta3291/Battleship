@@ -1,4 +1,7 @@
-﻿Public Class Cursor
+﻿''' <summary>
+''' カーソルを移動させる処理を持つクラス
+''' </summary>
+Public Class Cursor
 
     ''' <summary>
     ''' カーソルを移動させる

@@ -1,4 +1,7 @@
-﻿Public Class Enemyship
+﻿''' <summary>
+''' 敵船を作る処理を持つクラス
+''' </summary>
+Public Class Enemyship
     Private valueNeedToMakeEnemyship As New ValueNeedToMakeEnemyship
 
     ''' <summary>
