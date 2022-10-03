@@ -55,6 +55,7 @@ Public Class BattleshipGame
         Console.SetCursorPosition(GameTableValue.LEFT_EDGE, GameTableValue.TOP_EDGE)
         remainingBullet = bulletsAtStart
         ScreenRemainingBullets.ShowRemainingBullets(remainingBullet, bulletsAtStart)
+        Call (New Message.BiginMessage).ShowMessage()
         While Not IsDefeatedAllTheEnemyShips(table) AndAlso 0 < remainingBullet
             Dim c As ConsoleKeyInfo = Console.ReadKey(True)
             DetectAction(c.Key).DoAction()
@@ -149,6 +150,7 @@ Public Class BattleshipGame
                 table = attack.AttackEnemyship(rowNumber, columnNumber, table)
                 remainingBullet -= 1
                 ScreenRemainingBullets.ShowRemainingBullets(remainingBullet, bulletsAtStart)
+                Call (New Message.AttackedMessage).ShowMessage(rowNumber, columnNumber, table)
             End If
         End Sub
     End Class
@@ -166,15 +168,11 @@ Public Class BattleshipGame
     ''' </summary>
     ''' <param name="table">ゲームテーブル</param>
     Private Sub ShowGameResult(table As Integer()())
-        Const LEFT_POSITION_OF_DISPLAYING_RESULT As Integer = 0
-        Const TOP_POSITION_OF_DISPLAYING_RESULT As Integer = GameTableValue.BOTTOM_EDGE + 3
         If IsDefeatedAllTheEnemyShips(table) Then
-            Console.SetCursorPosition(LEFT_POSITION_OF_DISPLAYING_RESULT, TOP_POSITION_OF_DISPLAYING_RESULT)
-            Console.Write("ゲームクリアです")
+            Call (New Message.VictoryMessage).ShowMessage()
         Else
             ShowEnemyship(table)
-            Console.SetCursorPosition(LEFT_POSITION_OF_DISPLAYING_RESULT, TOP_POSITION_OF_DISPLAYING_RESULT)
-            Console.Write("ゲームオーバーです")
+            Call (New Message.DefeatMessage).ShowMessage()
         End If
     End Sub
 
