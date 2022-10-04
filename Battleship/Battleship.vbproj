@@ -97,6 +97,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="QuestionForPlayer.vb" />
+    <Compile Include="SearchForEnemyship.vb" />
     <Compile Include="PositionToCoordinateChanger.vb" />
     <Compile Include="TableCoordinate.vb" />
     <Compile Include="ValueNeedToMakeEnemyship.vb" />
