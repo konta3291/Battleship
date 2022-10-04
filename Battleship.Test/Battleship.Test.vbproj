@@ -75,6 +75,7 @@
     <Compile Include="BattleshipGameTest.vb" />
     <Compile Include="CursorTest.vb" />
     <Compile Include="EnemyshipTest.vb" />
+    <Compile Include="Message\AttackedMessageTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
