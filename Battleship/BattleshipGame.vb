@@ -246,7 +246,11 @@ Public Class BattleshipGame
         Console.WriteLine()
 
         '表
-        Console.WriteLine("    A B C D E F G H ")
+        Console.Write("　  ")
+        For i = 65 To 65 + table(0).Length - 1
+            Console.Write($"{StrConv(Chr(i), VbStrConv.Wide)}")
+        Next
+        Console.WriteLine()
         Console.WriteLine("    ________________")
         For row As Integer = 0 To table.Length - 1
             Console.Write("  ")
