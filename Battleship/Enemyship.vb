@@ -66,8 +66,8 @@ Public Class Enemyship
         Dim columnBeginPosition As Integer
         Do
             verticallyOrHorizontally = random.Next(2)
-            rowBeginPosition = random.Next(8)
-            columnBeginPosition = random.Next(8)
+            rowBeginPosition = random.Next(table.Length)
+            columnBeginPosition = random.Next(table(0).Length)
         Loop While Not CanCreateEnemyship(rowBeginPosition, columnBeginPosition, enemyshipSize, verticallyOrHorizontally, table)
 
         valueNeedToMakeEnemyship.SetValueNeedToMakeEnemyship(verticallyOrHorizontally, rowBeginPosition, columnBeginPosition)
@@ -85,13 +85,13 @@ Public Class Enemyship
     Public Function CanCreateEnemyship(rowBeginPosition As Integer, columnBeginPosition As Integer,
                                       enemyshipSize As Integer, verticallyOrHorizontally As Integer, table As Integer()()
                                       ) As Boolean
-        If verticallyOrHorizontally = Direction.Vertically AndAlso (rowBeginPosition + enemyshipSize) < 9 Then
+        If verticallyOrHorizontally = Direction.Vertically AndAlso (rowBeginPosition + enemyshipSize) < table.Length + 1 Then
             For i As Integer = 0 To enemyshipSize - 1
                 If Not table(rowBeginPosition + i)(columnBeginPosition) = BattleshipGame.TypeOfSquare.Naught Then
                     Return False
                 End If
             Next
-        ElseIf verticallyOrHorizontally = Direction.Horizontally AndAlso (columnBeginPosition + enemyshipSize) < 9 Then
+        ElseIf verticallyOrHorizontally = Direction.Horizontally AndAlso (columnBeginPosition + enemyshipSize) < table(0).Length + 1 Then
             For i As Integer = 0 To enemyshipSize - 1
                 If Not table(rowBeginPosition)(columnBeginPosition + i) = BattleshipGame.TypeOfSquare.Naught Then
                     Return False
