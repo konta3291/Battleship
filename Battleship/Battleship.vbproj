@@ -76,6 +76,11 @@
     <Compile Include="Arrow.vb" />
     <Compile Include="Attack.vb" />
     <Compile Include="BattleshipGame.vb" />
+    <Compile Include="Message\AttackedMessage.vb" />
+    <Compile Include="Message\BiginMessage.vb" />
+    <Compile Include="Message\DefeatMessage.vb" />
+    <Compile Include="Message\ProjectAMessage.vb" />
+    <Compile Include="Message\VictoryMessage.vb" />
     <Compile Include="ScreenRemainingBullets.vb" />
     <Compile Include="Cursor.vb" />
     <Compile Include="Enemyship.vb" />
@@ -97,6 +102,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="QuestionForPlayer.vb" />
+    <Compile Include="SearchForEnemyship.vb" />
+    <Compile Include="PositionToCoordinateChanger.vb" />
+    <Compile Include="TableCoordinate.vb" />
     <Compile Include="ValueNeedToMakeEnemyship.vb" />
   </ItemGroup>
   <ItemGroup>
