@@ -5,7 +5,7 @@
         Do
             Console.Clear()
             Dim battleshipGame As New BattleshipGame
-            battleshipGame.ExecuteBattleshipGameProcess()
+            battleshipGame.ExecuteBattleshipGameProcess((New DetermineDifficulty).GetDifficulty().NewGameValue())
         Loop While questionForPlayer.AskPlayerWantToPlayAgain()
     End Sub
 

@@ -25,32 +25,15 @@ Public Class BattleshipGame
     End Enum
 
     ''' <summary>
-    ''' ゲームテーブルを作る
-    ''' </summary>
-    ''' <returns>ゲームテーブル</returns>
-    Private Function CreateGameTable() As Integer()()
-        table = {
-          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
-          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
-          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
-          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
-          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
-          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
-          New Integer() {0, 0, 0, 0, 0, 0, 0, 0},
-          New Integer() {0, 0, 0, 0, 0, 0, 0, 0}
-      }
-        Return table
-    End Function
-
-    ''' <summary>
     ''' 戦艦ゲームの処理を行う
     ''' </summary>
-    Public Sub ExecuteBattleshipGameProcess()
-        table = CreateGameTable()
-        Dim enemyshipSizes As Integer() = {3, 4, 5}
+    ''' <param name="gameValue">難易度によって変わる値</param>
+    Public Sub ExecuteBattleshipGameProcess(gameValue As GameValue)
+        table = gameValue.Table
+        Dim enemyshipSizes As Integer() = gameValue.EnemyshipSizes
         Dim enemyship As New Enemyship
         table = enemyship.CreateEnemyship(enemyshipSizes, table)
-        bulletsAtStart = 24
+        bulletsAtStart = gameValue.BulletsAtStart
         ShowGameScreen(table)
         Dim arrow As New Arrow
         arrow.ShowArrow(gameTableValue.LeftEdge, gameTableValue.TopEdge)
