@@ -201,7 +201,7 @@ Public Class BattleshipGame
         ''' </summary>
         Private Sub DoAction() Implements InputKeyAction.DoAction
             Dim rowNumber As Integer = Console.CursorTop - 4
-            Dim columnNumber As Integer = CInt((Console.CursorLeft / 2) - 2)
+            Dim columnNumber As Integer = CInt((Console.CursorLeft - 5) / 2)
             If IsNotAttackedSquare(rowNumber, columnNumber, table) Then
                 Dim attack As New Attack
                 table = attack.AttackEnemyship(rowNumber, columnNumber, table)
@@ -258,7 +258,7 @@ Public Class BattleshipGame
     ''' <param name="rowNumber">行位置</param>
     ''' <param name="columnNumber">列位置</param>
     Private Sub ChangeSquareToEnemyshipSquare(rowNumber As Integer, columnNumber As Integer)
-        Console.SetCursorPosition((columnNumber + 2) * 2, rowNumber + 4)
+        Console.SetCursorPosition((columnNumber * 2) + 5, rowNumber + 4)
         Console.Write("△")
     End Sub
 
@@ -303,17 +303,21 @@ Public Class BattleshipGame
         Console.WriteLine()
 
         '表
-        Console.Write("　  ")
+        Console.Write("　   ")
         Dim leftEdge As Integer = Console.CursorLeft
         For i = 65 To 65 + table(0).Length - 1
             Console.Write($"{StrConv(Chr(i), VbStrConv.Wide)}")
         Next
         Dim rightEdge As Integer = Console.CursorLeft - 2
         Console.WriteLine()
-        Console.WriteLine("    ________________")
+        Console.WriteLine("　   ".PadRight(table(0).Length + 4, "＿"c))
         Dim topEdge As Integer = Console.CursorTop
         For row As Integer = 0 To table.Length - 1
-            Console.Write("  ")
+            If row < 9 Then
+                Console.Write("　 ")
+            Else
+                Console.Write("　")
+            End If
             Console.Write(row + 1 & "|")
             For column As Integer = 0 To table(row).Length - 1
                 Console.Write("　")
@@ -321,7 +325,7 @@ Public Class BattleshipGame
             Console.WriteLine("|")
         Next
         Dim bottomEdge As Integer = Console.CursorTop - 1
-        Console.Write("    ¯¯¯¯¯¯¯¯")
+        Console.Write("　   ".PadRight(table(0).Length + 4, "¯"c))
         gameTableValue = New GameTableValue(topEdge, bottomEdge, leftEdge, rightEdge)
     End Sub
 
