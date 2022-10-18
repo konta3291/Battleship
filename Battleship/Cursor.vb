@@ -3,6 +3,26 @@
 ''' </summary>
 Public Class Cursor
 
+    ''' <summary>テーブルの上端の位置</summary>
+    Private ReadOnly topEdge As Integer
+    ''' <summary>テーブルの下端の位置</summary>
+    Private ReadOnly bottomEdge As Integer
+    ''' <summary>テーブルの左端の位置</summary>
+    Private ReadOnly leftEdge As Integer
+    ''' <summary>テーブルの右端の位置</summary>
+    Private ReadOnly rightEdge As Integer
+
+    ''' <summary>
+    ''' テーブルの大きさを設定する
+    ''' </summary>
+    ''' <param name="gameTableValue">テーブルの大きさ</param>
+    Public Sub New(gameTableValue As GameTableValue)
+        topEdge = gameTableValue.TopEdge
+        bottomEdge = gameTableValue.BottomEdge
+        leftEdge = gameTableValue.LeftEdge
+        rightEdge = gameTableValue.RightEdge
+    End Sub
+
     ''' <summary>
     ''' カーソルを移動させる
     ''' </summary>
@@ -30,10 +50,10 @@ Public Class Cursor
     Public Function CorrectOfLeftAndRightPositionThatWentOffGameTable(cursorLeft As Integer) As Integer
         Dim returnCursorLeft As Integer = cursorLeft
 
-        If cursorLeft < GameTableValue.LEFT_EDGE Then
-            returnCursorLeft = GameTableValue.LEFT_EDGE
-        ElseIf GameTableValue.RIGHT_EDGE < cursorLeft Then
-            returnCursorLeft = GameTableValue.RIGHT_EDGE
+        If cursorLeft < leftEdge Then
+            returnCursorLeft = leftEdge
+        ElseIf rightEdge < cursorLeft Then
+            returnCursorLeft = rightEdge
         End If
 
         Return returnCursorLeft
@@ -48,10 +68,10 @@ Public Class Cursor
     Public Function CorrectOfTopAndBottomPositionThatWentOffGameTable(cursorTop As Integer) As Integer
         Dim returnCursorTop As Integer = cursorTop
 
-        If cursorTop < GameTableValue.TOP_EDGE Then
-            returnCursorTop = GameTableValue.TOP_EDGE
-        ElseIf GameTableValue.BOTTOM_EDGE < cursorTop Then
-            returnCursorTop = GameTableValue.BOTTOM_EDGE
+        If cursorTop < topEdge Then
+            returnCursorTop = topEdge
+        ElseIf bottomEdge < cursorTop Then
+            returnCursorTop = bottomEdge
         End If
 
         Return returnCursorTop

@@ -76,18 +76,21 @@ Namespace Message
         Private ReadOnly behavior As IBehavior
 
         ''' <summary>
-        ''' インスタンスの指定がなければ自分で違うインスタンスを作る
+        ''' テーブルの大きさをもとにメッセージを表示する垂直での位置を設定する
         ''' </summary>
-        Public Sub New()
-            Me.New(Nothing)
+        ''' <param name="gameTableValue">テーブルの大きさ</param>
+        Public Sub New(gameTableValue As GameTableValue)
+            MyBase.New(gameTableValue)
+            behavior = New DefaultBehavior
         End Sub
 
         ''' <summary>
-        ''' インスタンスの指定がNothingならば、実装用のインスタンスを作る
+        ''' 指定のインスタンスをbehaviorに入れる
         ''' </summary>
         ''' <param name="behavior">指定のインスタンス</param>
         Public Sub New(behavior As IBehavior)
-            Me.behavior = If(behavior, New DefaultBehavior)
+            MyBase.New(New GameTableValue(0, 0, 0, 0))
+            Me.behavior = behavior
         End Sub
 
         Public Overrides Function GetMessage(Optional rowNumber As Integer = Nothing,
