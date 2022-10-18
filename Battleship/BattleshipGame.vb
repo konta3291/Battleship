@@ -181,7 +181,7 @@ Public Class BattleshipGame
     ''' </summary>
     ''' <param name="table">ゲームテーブル</param>
     Private Sub ShowEnemyship(table As Integer()())
-        Console.CursorVisible = False
+        CursorVisible.GetInstance.HideCursor()
         Try
             For row As Integer = 0 To table.Length - 1
                 For column As Integer = 0 To table(row).Length - 1
@@ -191,7 +191,7 @@ Public Class BattleshipGame
                 Next
             Next
         Finally
-            Console.CursorVisible = True
+            CursorVisible.GetInstance.ShowCursor()
         End Try
     End Sub
 

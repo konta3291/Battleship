@@ -12,13 +12,13 @@ Public Class ScreenRemainingBullets
         Dim cursorLeft As Integer = Console.CursorLeft
         Dim cursorTop As Integer = Console.CursorTop
         Dim usedBullet As Integer = bulletsAtStart - remainingBullet
-        Console.CursorVisible = False
+        CursorVisible.GetInstance.HideCursor()
         Try
             Console.SetCursorPosition(0, GameTableValue.BOTTOM_EDGE + 2)
             Console.Write("残弾：" & New String("◯"c, remainingBullet) & New String("×"c, usedBullet))
             Console.SetCursorPosition(cursorLeft, cursorTop)
         Finally
-            Console.CursorVisible = True
+            CursorVisible.GetInstance.ShowCursor()
         End Try
 
     End Sub

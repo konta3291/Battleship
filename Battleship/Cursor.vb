@@ -12,13 +12,13 @@ Public Class Cursor
         Dim afterCursorLeft As Integer = CorrectOfLeftAndRightPositionThatWentOffGameTable(Console.CursorLeft + x)
         Dim afterCursorTop As Integer = CorrectOfTopAndBottomPositionThatWentOffGameTable(Console.CursorTop + y)
         Dim arrow As New Arrow
-        Console.CursorVisible = False
+        CursorVisible.GetInstance.HideCursor()
         Try
             arrow.MoveArrow(afterCursorLeft, afterCursorTop)
             'カーソルの位置を移動させる
             Console.SetCursorPosition(afterCursorLeft, afterCursorTop)
         Finally
-            Console.CursorVisible = True
+            CursorVisible.GetInstance.ShowCursor()
         End Try
     End Sub
 

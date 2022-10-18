@@ -14,14 +14,14 @@
                        Optional table As Integer()() = Nothing)
             Dim cursorTop As Integer = Console.CursorTop
             Dim cursorLeft As Integer = Console.CursorLeft
-            Console.CursorVisible = False
+            CursorVisible.GetInstance.HideCursor()
             RemoveOldMessage()
             Console.SetCursorPosition(0, GameTableValue.BOTTOM_EDGE + 3)
             Try
                 Console.Write(GetMessage(rowNumber, columnNumber, table))
                 Console.SetCursorPosition(cursorLeft, cursorTop)
             Finally
-                Console.CursorVisible = True
+                CursorVisible.GetInstance.ShowCursor()
             End Try
         End Sub
 

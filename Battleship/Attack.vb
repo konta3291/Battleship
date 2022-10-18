@@ -44,7 +44,7 @@ Public Class Attack
     Private Sub ChangeSquare(lineNumber As Integer, columnNumber As Integer, table As Integer()())
         Dim cursorTop As Integer = Console.CursorTop
         Dim cursorLeft As Integer = Console.CursorLeft
-        Console.CursorVisible = False
+        CursorVisible.GetInstance.HideCursor()
         Try
             If table(lineNumber)(columnNumber) = BattleshipGame.TypeOfSquare.Attacked Then
                 Console.Write("〇")
@@ -53,7 +53,7 @@ Public Class Attack
             End If
             Console.SetCursorPosition(cursorLeft, cursorTop)
         Finally
-            Console.CursorVisible = True
+            CursorVisible.GetInstance.ShowCursor()
         End Try
     End Sub
 
