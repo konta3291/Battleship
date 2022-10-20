@@ -3,8 +3,8 @@
 
     Private sut As Cursor
 
-    <SetUp> Public Overridable Sub Setup()
-        sut = New Cursor
+    <SetUp> Public Sub Setup()
+        sut = New Cursor(New GameTableValue(topEdge:=4, bottomEdge:=11, leftEdge:=4, rightEdge:=18))
     End Sub
 
     Public Class CorrectOfLeftAndRightPositionThatWentOffGameTableTest : Inherits CursorTest

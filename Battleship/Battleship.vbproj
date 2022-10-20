@@ -76,6 +76,9 @@
     <Compile Include="Arrow.vb" />
     <Compile Include="Attack.vb" />
     <Compile Include="BattleshipGame.vb" />
+    <Compile Include="CursorVisible.vb" />
+    <Compile Include="DetermineDifficulty.vb" />
+    <Compile Include="GameValue.vb" />
     <Compile Include="Message\AttackedMessage.vb" />
     <Compile Include="Message\BiginMessage.vb" />
     <Compile Include="Message\DefeatMessage.vb" />
@@ -104,7 +107,12 @@
     <Compile Include="QuestionForPlayer.vb" />
     <Compile Include="SearchForEnemyship.vb" />
     <Compile Include="PositionToCoordinateChanger.vb" />
+    <Compile Include="SetValue\EasyValue.vb" />
+    <Compile Include="SetValue\HardValue.vb" />
+    <Compile Include="SetValue\NormalValue.vb" />
+    <Compile Include="SetValue\SettingGameValue.vb" />
     <Compile Include="TableCoordinate.vb" />
+    <Compile Include="TableCreator.vb" />
     <Compile Include="ValueNeedToMakeEnemyship.vb" />
   </ItemGroup>
   <ItemGroup>
