@@ -2,7 +2,7 @@
     ''' <summary>
     ''' 開始時のメッセージを持つクラス
     ''' </summary>
-    Public Class BiginMessage : Inherits ProjectAMessage
+    Public Class BeginMessage : Inherits ProjectAMessage
 
         ''' <summary>
         ''' テーブルの大きさをもとにメッセージを表示する垂直での位置を設定する

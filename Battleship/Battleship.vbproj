@@ -80,7 +80,7 @@
     <Compile Include="DetermineDifficulty.vb" />
     <Compile Include="GameValue.vb" />
     <Compile Include="Message\AttackedMessage.vb" />
-    <Compile Include="Message\BiginMessage.vb" />
+    <Compile Include="Message\BeginMessage.vb" />
     <Compile Include="Message\DefeatMessage.vb" />
     <Compile Include="Message\ProjectAMessage.vb" />
     <Compile Include="Message\VictoryMessage.vb" />

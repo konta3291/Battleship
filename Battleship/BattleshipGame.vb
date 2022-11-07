@@ -40,7 +40,7 @@ Public Class BattleshipGame
         Console.SetCursorPosition(gameTableValue.LeftEdge, gameTableValue.TopEdge)
         remainingBullet = bulletsAtStart
         Call (New ScreenRemainingBullets(gameTableValue)).ShowRemainingBullets(remainingBullet, bulletsAtStart)
-        Call New Message.BiginMessage(gameTableValue).ShowMessage()
+        Call New Message.BeginMessage(gameTableValue).ShowMessage()
         While Not IsDefeatedAllTheEnemyShips(table) AndAlso 0 < remainingBullet
             Dim c As ConsoleKeyInfo = Console.ReadKey(True)
             DetectAction(c.Key).DoAction()
