@@ -16,7 +16,7 @@
                                          Optional table As Integer()() = Nothing)
             CursorVisible.GetInstance.HideCursor()
             RemoveOldMessage()
-            Console.SetCursorPosition(0, TopPositionToDisplayMessage)
+            Console.SetCursorPosition(0, TopPosition)
             Try
                 Console.WriteLine(GetMessage(rowNumber, columnNumber, table))
             Finally
