@@ -11,7 +11,7 @@
         ''' </summary>
         ''' <param name="gameTableValue">テーブルの大きさ</param>
         Public Sub New(gameTableValue As GameTableValue)
-            TopPositionToDisplayMessage = gameTableValue.BottomEdge + 3
+            TopPositionToDisplayMessage = gameTableValue.BottomEdge + 2
         End Sub
 
         ''' <summary>
