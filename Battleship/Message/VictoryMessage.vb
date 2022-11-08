@@ -26,7 +26,7 @@
 
         Public Overrides Function GetMessage(Optional rowNumber As Integer = Nothing, Optional columnNumber As Integer = Nothing,
                                      Optional table As Integer()() = Nothing) As String
-            Return "おめでとうございます！勝利しました！"
+            Return "我々の勝利だ！よくやった！"
         End Function
     End Class
 
