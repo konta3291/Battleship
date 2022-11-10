@@ -9,7 +9,7 @@ Public Class QuestionForPlayer
     ''' <returns>もう一度遊ぶ場合はTrue、そうでない場合はFalse</returns>
     Public Function AskPlayerWantToPlayAgain() As Boolean
         Dim isPlayerWantToPlayAgain As Boolean
-        Console.Write("リトライしますか？(Y/N):")
+        Console.Write("リトライしますか？(Y/N)")
         While True
             Dim c As ConsoleKeyInfo = Console.ReadKey(True)
             Select Case c.Key

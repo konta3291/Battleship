@@ -98,13 +98,13 @@ Namespace Message
                                          Optional table As Integer()() = Nothing) As String
 
             If behavior.IsHitAnEnemyship(table, rowNumber, columnNumber) Then
-                Return "攻撃成功、命中です"
+                Return "命中！見事だ！"
             ElseIf behavior.ExistsEnemyWithinOneCursorMove(table, rowNumber, columnNumber) Then
-                Return "攻撃ミス、おしいです"
+                Return "おしい！すぐそばに敵はいる！"
             ElseIf behavior.ExistsEnemyWithinTwoCursorMove(table, rowNumber, columnNumber) Then
-                Return "敵船が近くにいます"
+                Return "敵艦は近くにいる！"
             Else
-                Return "敵船は近くにいないです"
+                Return "その辺りには敵艦はいないようだ"
             End If
 
         End Function

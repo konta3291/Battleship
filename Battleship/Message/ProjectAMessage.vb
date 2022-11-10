@@ -4,14 +4,14 @@
     ''' </summary>
     Public MustInherit Class ProjectAMessage
         ''' <summary>メッセージを表示する垂直での位置</summary>
-        Public ReadOnly TopPositionToDisplayMessage As Integer
+        Public ReadOnly TopPosition As Integer
 
         ''' <summary>
         ''' テーブルの大きさをもとにメッセージを表示する垂直での位置を設定する
         ''' </summary>
         ''' <param name="gameTableValue">テーブルの大きさ</param>
         Public Sub New(gameTableValue As GameTableValue)
-            TopPositionToDisplayMessage = gameTableValue.BottomEdge + 2
+            TopPosition = gameTableValue.BottomEdge + 2
         End Sub
 
         ''' <summary>
@@ -26,7 +26,7 @@
             Dim cursorLeft As Integer = Console.CursorLeft
             CursorVisible.GetInstance.HideCursor()
             RemoveOldMessage()
-            Console.SetCursorPosition(0, TopPositionToDisplayMessage)
+            Console.SetCursorPosition(0, TopPosition)
             Try
                 Console.Write(GetMessage(rowNumber, columnNumber, table))
                 Console.SetCursorPosition(cursorLeft, cursorTop)
@@ -39,7 +39,7 @@
         ''' 前回のメッセージを削除する
         ''' </summary>
         Public Sub RemoveOldMessage()
-            Console.SetCursorPosition(0, TopPositionToDisplayMessage)
+            Console.SetCursorPosition(0, TopPosition)
             Console.Write("　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　")
         End Sub
 

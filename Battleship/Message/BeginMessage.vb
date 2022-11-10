@@ -2,7 +2,7 @@
     ''' <summary>
     ''' 開始時のメッセージを持つクラス
     ''' </summary>
-    Public Class BiginMessage : Inherits ProjectAMessage
+    Public Class BeginMessage : Inherits ProjectAMessage
 
         ''' <summary>
         ''' テーブルの大きさをもとにメッセージを表示する垂直での位置を設定する
@@ -14,7 +14,7 @@
 
         Public Overrides Function GetMessage(Optional rowNumber As Integer = Nothing, Optional columnNumber As Integer = Nothing,
                                      Optional table As Integer()() = Nothing) As String
-            Return "始まりました！健闘を祈ります！"
+            Return "戦闘開始だ！全敵艦を撃沈せよ！"
         End Function
 
     End Class

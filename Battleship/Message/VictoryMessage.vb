@@ -16,7 +16,7 @@
                                          Optional table As Integer()() = Nothing)
             CursorVisible.GetInstance.HideCursor()
             RemoveOldMessage()
-            Console.SetCursorPosition(0, TopPositionToDisplayMessage)
+            Console.SetCursorPosition(0, TopPosition)
             Try
                 Console.WriteLine(GetMessage(rowNumber, columnNumber, table))
             Finally
@@ -26,7 +26,7 @@
 
         Public Overrides Function GetMessage(Optional rowNumber As Integer = Nothing, Optional columnNumber As Integer = Nothing,
                                      Optional table As Integer()() = Nothing) As String
-            Return "おめでとうございます！勝利しました！"
+            Return "我々の勝利だ！よくやった！"
         End Function
     End Class
 
